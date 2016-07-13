@@ -8,6 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class WebKitViewController;
+
 @interface ProductViewController : UITableViewController
-@property (nonatomic, retain) NSArray *products;
+
+
+
+@property (nonatomic, retain) NSMutableArray *appleProducts;
+
+@property (nonatomic, retain) NSMutableArray *samsungProducts;
+
+@property (nonatomic, retain) NSMutableArray *blackberryProducts;
+
+@property (nonatomic, retain) NSMutableArray *nexusProducts;
+
+
+@property (retain, nonatomic) IBOutlet WebKitViewController *webKitViewController;
+
+
 @end
