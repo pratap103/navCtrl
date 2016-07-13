@@ -23,6 +23,12 @@
 		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
+		BA56CC9F1D3576A300C1C4A4 /* apple.gif in Resources */ = {isa = PBXBuildFile; fileRef = BA56CC9E1D3576A300C1C4A4 /* apple.gif */; };
+		BA56CCA11D3576A800C1C4A4 /* samsung.png in Resources */ = {isa = PBXBuildFile; fileRef = BA56CCA01D3576A800C1C4A4 /* samsung.png */; };
+		BA56CCA31D3576AC00C1C4A4 /* nexus.png in Resources */ = {isa = PBXBuildFile; fileRef = BA56CCA21D3576AC00C1C4A4 /* nexus.png */; };
+		BA56CCA51D3576B000C1C4A4 /* BlackBerry.png in Resources */ = {isa = PBXBuildFile; fileRef = BA56CCA41D3576B000C1C4A4 /* BlackBerry.png */; };
+		BA56CCAE1D358A4000C1C4A4 /* WebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56CCAD1D358A4000C1C4A4 /* WebKitViewController.m */; };
+		BA56CCB01D35A75800C1C4A4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA56CCAF1D35A75800C1C4A4 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +64,13 @@
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
+		BA56CC9E1D3576A300C1C4A4 /* apple.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = apple.gif; sourceTree = "<group>"; };
+		BA56CCA01D3576A800C1C4A4 /* samsung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samsung.png; sourceTree = "<group>"; };
+		BA56CCA21D3576AC00C1C4A4 /* nexus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nexus.png; sourceTree = "<group>"; };
+		BA56CCA41D3576B000C1C4A4 /* BlackBerry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackBerry.png; sourceTree = "<group>"; };
+		BA56CCAC1D358A4000C1C4A4 /* WebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebKitViewController.h; sourceTree = "<group>"; };
+		BA56CCAD1D358A4000C1C4A4 /* WebKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebKitViewController.m; sourceTree = "<group>"; };
+		BA56CCAF1D35A75800C1C4A4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA56CCB01D35A75800C1C4A4 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
 				48A656B518163BF200746D36 /* Foundation.framework in Frameworks */,
@@ -133,6 +147,7 @@
 		48A656B318163BF200746D36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA56CCAF1D35A75800C1C4A4 /* WebKit.framework */,
 				48A656B418163BF200746D36 /* Foundation.framework */,
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
 				48A656B818163BF200746D36 /* UIKit.framework */,
@@ -144,6 +159,8 @@
 		48A656BA18163BF200746D36 /* NavCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				BA56CCAC1D358A4000C1C4A4 /* WebKitViewController.h */,
+				BA56CCAD1D358A4000C1C4A4 /* WebKitViewController.m */,
 				483796CB1BCBF7A00062D5AB /* AppDelegate */,
 				483796CC1BCBF7C70062D5AB /* ParentViewController */,
 				483796CD1BCBF7EB0062D5AB /* ProductViewController */,
@@ -158,6 +175,10 @@
 			isa = PBXGroup;
 			children = (
 				48A656ED1816468000746D36 /* Sunflower.gif */,
+				BA56CC9E1D3576A300C1C4A4 /* apple.gif */,
+				BA56CCA01D3576A800C1C4A4 /* samsung.png */,
+				BA56CCA21D3576AC00C1C4A4 /* nexus.png */,
+				BA56CCA41D3576B000C1C4A4 /* BlackBerry.png */,
 				48A656BC18163BF200746D36 /* NavCtrl-Info.plist */,
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
 				48A656C018163BF200746D36 /* main.m */,
@@ -260,9 +281,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA56CCA31D3576AC00C1C4A4 /* nexus.png in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
+				BA56CCA51D3576B000C1C4A4 /* BlackBerry.png in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
+				BA56CC9F1D3576A300C1C4A4 /* apple.gif in Resources */,
+				BA56CCA11D3576A800C1C4A4 /* samsung.png in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +309,7 @@
 			files = (
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
+				BA56CCAE1D358A4000C1C4A4 /* WebKitViewController.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 			);

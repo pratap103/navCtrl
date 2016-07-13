@@ -7,6 +7,7 @@
 //
 
 #import "ProductViewController.h"
+#import "WebKitViewController.h"
 
 @interface ProductViewController ()
 
@@ -26,6 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+
+        self.appleProducts = [NSMutableArray arrayWithObjects:@"iPad", @"iPod Touch",@"iPhone", nil];
+        self.samsungProducts = [NSMutableArray arrayWithObjects:@"Galaxy S7", @"Galaxy Note", @"Galaxy Tab", nil];
+        self.blackberryProducts = [NSMutableArray arrayWithObjects:@"Classic", @"Leap", @"Passport", nil];
+        self.nexusProducts = [NSMutableArray arrayWithObjects:@"5X", @"6P", @"9", nil];
 
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
@@ -38,12 +45,9 @@
     
     [super viewWillAppear:animated];
     
-    if ([self.title isEqualToString:@"Apple mobile devices"]) {
-        self.products = @[@"iPad", @"iPod Touch",@"iPhone"];
-    } else {
-        self.products = @[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"];
-    }
+    
     [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +69,24 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.products count];
+     if ([self.title isEqualToString:@"Apple mobile devices"]) {
+    return [self.appleProducts count];
+     }
+
+    if ([self.title isEqualToString:@"Samsung mobile devices"]) {
+        return [self.samsungProducts count];
+    }
+    
+    if ([self.title isEqualToString:@"Blackberry mobile devices"]) {
+        return [self.blackberryProducts count];
+    }
+    
+    if ([self.title isEqualToString:@"Nexus mobile devices"]) {
+        return [self.nexusProducts count];
+    }
+
+
+    else return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,9 +97,158 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
+    
+    if ([self.title isEqualToString:@"Apple mobile devices"]) {
+        cell.textLabel.text = [self.appleProducts objectAtIndex:[indexPath row]];
+   
+    }
+    
+    if ([self.title isEqualToString:@"Samsung mobile devices"]) {
+        cell.textLabel.text = [self.samsungProducts objectAtIndex:[indexPath row]];
+        
+       
+    }
+    
+    if ([self.title isEqualToString:@"Blackberry mobile devices"]) {
+        cell.textLabel.text = [self.blackberryProducts objectAtIndex:[indexPath row]];
+        
+        
+    }
+    
+    if ([self.title isEqualToString:@"Nexus mobile devices"]) {
+        cell.textLabel.text = [self.nexusProducts objectAtIndex:[indexPath row]];
+        
+    }
+    
     return cell;
+   
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if ([self.title isEqualToString:@"Apple mobile devices"]) {
+        self.webKitViewController.title = [self.appleProducts objectAtIndex:[indexPath row]];
+    }
+    
+    if ([self.title isEqualToString:@"Samsung mobile devices"]) {
+       self.webKitViewController.title = [self.samsungProducts objectAtIndex:[indexPath row]];
+    }
+    
+    if ([self.title isEqualToString:@"Blackberry mobile devices"]) {
+        self.webKitViewController.title = [self.blackberryProducts objectAtIndex:[indexPath row]];
+    }
+    
+    if ([self.title isEqualToString:@"Nexus mobile devices"]) {
+        self.webKitViewController.title = [self.nexusProducts objectAtIndex:[indexPath row]];
+    }
+
+
+    
+    [self.navigationController pushViewController:self.webKitViewController animated:YES];
+    
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    if ([self.title isEqualToString:@"Apple mobile devices"]) {
+    NSString *stringToMove = self.appleProducts[sourceIndexPath.row];
+    [self.appleProducts removeObjectAtIndex:sourceIndexPath.row];
+    [self.appleProducts insertObject:stringToMove atIndex:destinationIndexPath.row];
+    }
+    
+    if ([self.title isEqualToString:@"Samsung mobile devices"]) {
+        NSString *stringToMove = self.samsungProducts[sourceIndexPath.row];
+        [self.samsungProducts removeObjectAtIndex:sourceIndexPath.row];
+        [self.samsungProducts insertObject:stringToMove atIndex:destinationIndexPath.row];
+    }
+    
+    if ([self.title isEqualToString:@"Blackberry mobile devices"]) {
+        NSString *stringToMove = self.blackberryProducts[sourceIndexPath.row];
+        [self.blackberryProducts removeObjectAtIndex:sourceIndexPath.row];
+        [self.blackberryProducts insertObject:stringToMove atIndex:destinationIndexPath.row];
+    }
+    
+    if ([self.title isEqualToString:@"Nexus mobile devices"]) {
+        NSString *stringToMove = self.nexusProducts[sourceIndexPath.row];
+        [self.nexusProducts removeObjectAtIndex:sourceIndexPath.row];
+        [self.nexusProducts insertObject:stringToMove atIndex:destinationIndexPath.row];
+    }
+
+
+
+        
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    if ([self.title isEqualToString:@"Apple mobile devices"]) {
+
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.appleProducts removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if
+        (editingStyle == UITableViewCellEditingStyleInsert){
+            
+        }
+    }
+    
+    if ([self.title isEqualToString:@"Samsung mobile devices"]) {
+        
+        
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            [self.samsungProducts removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else if
+            (editingStyle == UITableViewCellEditingStyleInsert){
+                
+            }
+    }
+
+    if ([self.title isEqualToString:@"Blackberry mobile devices"]) {
+        
+        
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            [self.blackberryProducts removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else if
+            (editingStyle == UITableViewCellEditingStyleInsert){
+                
+            }
+    }
+    
+    if ([self.title isEqualToString:@"Nexus mobile devices"]) {
+        
+        
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            [self.nexusProducts removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else if
+            (editingStyle == UITableViewCellEditingStyleInsert){
+                
+            }
+    }
+
+
+}
+
+
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -137,4 +307,9 @@
  
  */
 
+- (void)dealloc {
+    [_webKitViewController release];
+
+    [super dealloc];
+}
 @end

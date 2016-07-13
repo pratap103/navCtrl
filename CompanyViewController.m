@@ -36,7 +36,10 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices"];
+    self.companyList = [NSMutableArray arrayWithObjects:@"Apple mobile devices",@"Samsung mobile devices",@"Blackberry mobile devices",@"Nexus mobile devices", nil];
+    
+    self.imageNameList = @[@"apple.gif", @"samsung.png", @"BlackBerry.png", @"nexus.png"];
+    
     self.title = @"Mobile device makers";
     
     
@@ -75,8 +78,38 @@
     // Configure the cell...
     
     cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
+    cell.imageView.image = [UIImage imageNamed:[self.imageNameList objectAtIndex:[indexPath row]]];
+    
+
+
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {                //delete cell
+        [self.companyList removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if
+        (editingStyle == UITableViewCellEditingStyleInsert){
+            
+        }
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSString *stringToMove = self.companyList[sourceIndexPath.row];
+    [self.companyList removeObjectAtIndex:sourceIndexPath.row];
+    [self.companyList insertObject:stringToMove atIndex:destinationIndexPath.row];
 }
 
 /*
@@ -125,12 +158,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-
-    if (indexPath.row == 0){
-        self.productViewController.title = @"Apple mobile devices";
-    } else {
-        self.productViewController.title = @"Samsung mobile devices";
-    }
+    
+    self.productViewController.title = [self.companyList objectAtIndex:[indexPath row]];
+    
+    
     
     [self.navigationController
         pushViewController:self.productViewController
