@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Product.h"
 
 @interface Company : NSObject
 
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSMutableArray *products;
+
+
+-(id)initWithName:(NSString*)name;
+
+
 @end
+
