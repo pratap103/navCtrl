@@ -34,6 +34,9 @@
     
     DataAccessObject *myData = [[DataAccessObject alloc] init];
     self.companyList = [myData createData];
+//    DataAccessObject *myData2 = [[DataAccessObject alloc] init];          Test code for singleton
+//    NSLog(@"%@", myData2);
+
     
     
     

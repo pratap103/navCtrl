@@ -11,6 +11,8 @@
 #import "Company.h"
 
 @implementation DataAccessObject
+static DataAccessObject* _sharedDataAccessObject = nil;
+
 
 -(NSMutableArray*)createData{
     
@@ -46,6 +48,50 @@
     self.companiesArray = [NSMutableArray arrayWithObjects: companyApple, companySamsung, companyBlackberry, companyNexus, nil];
     
     return self.companiesArray;
+}
+
++(DataAccessObject*)sharedDataAccessObject{
+    
+    
+    @synchronized ([DataAccessObject class]) {
+        if (!_sharedDataAccessObject)
+            [[self alloc]init];
+            
+            return _sharedDataAccessObject;
+        
+        
+        
+    }
+    return nil;
+    
+}
+
++(id) alloc{
+    
+    @synchronized([DataAccessObject class])
+    {
+//        NSAssert(_sharedDataAccessObject == nil, @"Attempted to allocate a second instance of a singleton.");     //Crashes app if an instance already exists.
+        
+//        NSLog(@"Tried to create another instance of a singleton");      //Prints to log instead
+       
+        _sharedDataAccessObject = [super alloc];
+        return _sharedDataAccessObject;
+    }
+    
+    return nil;
+}
+
++(id) init{
+    
+    self = [super init];
+    if (self != nil) {
+       
+    }
+    
+    return self;
+    
+    
+    
 }
 
 

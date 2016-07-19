@@ -12,8 +12,12 @@
 
 @interface DataAccessObject : NSObject
 
+
+
+
 @property (strong, nonatomic) NSMutableArray *companiesArray;
 
 -(NSMutableArray*)createData;
++(DataAccessObject*)sharedDataAccessObject;
 
 @end
