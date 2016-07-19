@@ -8,6 +8,9 @@
 
 #import "CompanyViewController.h"
 #import "ProductViewController.h"
+#import "Company.h"
+#import "Product.h"
+#import "DataAccessObject.h"
 
 @interface CompanyViewController ()
 
@@ -28,6 +31,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    DataAccessObject *myData = [[DataAccessObject alloc] init];
+    self.companyList = [myData createData];
+//    DataAccessObject *myData2 = [[DataAccessObject alloc] init];          Test code for singleton
+//    NSLog(@"%@", myData2);
+
+    
+    
+    
+    
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
@@ -36,7 +51,6 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.companyList = [NSMutableArray arrayWithObjects:@"Apple mobile devices",@"Samsung mobile devices",@"Blackberry mobile devices",@"Nexus mobile devices", nil];
     
     self.imageNameList = @[@"apple.gif", @"samsung.png", @"BlackBerry.png", @"nexus.png"];
     
@@ -55,14 +69,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return [self.companyList count];
 }
@@ -77,7 +91,7 @@
     
     // Configure the cell...
     
-    cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [[self.companyList objectAtIndex:[indexPath row]] name];
     cell.imageView.image = [UIImage imageNamed:[self.imageNameList objectAtIndex:[indexPath row]]];
     
 
@@ -159,9 +173,8 @@
 {
 
     
-    self.productViewController.title = [self.companyList objectAtIndex:[indexPath row]];
-    
-    
+    self.productViewController.title = [[self.companyList objectAtIndex:[indexPath row]] name];
+    self.productViewController.company = [self.companyList objectAtIndex:[indexPath row]];
     
     [self.navigationController
         pushViewController:self.productViewController
