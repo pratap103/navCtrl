@@ -11,6 +11,7 @@
 #import "Company.h"
 #import "Product.h"
 #import "DataAccessObject.h"
+#import "EditingViewController.h"
 
 @interface CompanyViewController ()
 
@@ -36,6 +37,10 @@
     self.companyList = [myData createData];
 //    DataAccessObject *myData2 = [[DataAccessObject alloc] init];          Test code for singleton
 //    NSLog(@"%@", myData2);
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    self.navigationItem.leftBarButtonItem = addButton;
+    
 
     
     
@@ -52,9 +57,19 @@
     
     
     
-    self.imageNameList = @[@"apple.gif", @"samsung.png", @"BlackBerry.png", @"nexus.png"];
+
     
     self.title = @"Mobile device makers";
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    self.companyList = [[DataAccessObject sharedDataAccessObject]refreshData];
+//    NSLog(@"%@", self.companyList);       test code
+    [self.tableView reloadData];
+    
     
     
 }
@@ -92,9 +107,30 @@
     // Configure the cell...
     
     cell.textLabel.text = [[self.companyList objectAtIndex:[indexPath row]] name];
-    cell.imageView.image = [UIImage imageNamed:[self.imageNameList objectAtIndex:[indexPath row]]];
+    NSString* imageURL = [[self.companyList objectAtIndex:[indexPath row]] myURL];
+    
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSURL * url = [NSURL URLWithString: imageURL];
+    NSURLSessionDataTask * dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                       {
+                                           
+                                           
+                                           UIImage *image = [UIImage imageWithData:data];
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               cell.imageView.image = image;
+                                               [self.tableView reloadData];
+                                           });
+                                           
+
+                                           
+                                       }];
+    
     
 
+    
+    [dataTask resume];         //Asychronous method
+    
+    
 
     
     return cell;
@@ -108,7 +144,7 @@
     }
     else if
         (editingStyle == UITableViewCellEditingStyleInsert){
-            
+           
         }
     
 }
@@ -125,6 +161,24 @@
     [self.companyList removeObjectAtIndex:sourceIndexPath.row];
     [self.companyList insertObject:stringToMove atIndex:destinationIndexPath.row];
 }
+
+-(void)insertNewObject{
+    
+    [self.navigationController
+     pushViewController:self.editingViewController
+     animated:YES];
+    
+}
+
+
+//-(void)tableView:(UITableView *)tableView insertRowsAtIndexPath:(NSIndexPath *)lastRow{
+//    
+//    NSString *stringToAdd = @"Nikon";
+//    [self.companyList insertObject:stringToAdd atIndex:lastRow.row];
+//    
+//    
+//    
+//}
 
 /*
 // Override to support conditional editing of the table view.
@@ -175,6 +229,7 @@
     
     self.productViewController.title = [[self.companyList objectAtIndex:[indexPath row]] name];
     self.productViewController.company = [self.companyList objectAtIndex:[indexPath row]];
+    
     
     [self.navigationController
         pushViewController:self.productViewController

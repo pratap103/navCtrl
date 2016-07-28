@@ -10,13 +10,15 @@
 #import "Company.h"
 @implementation Product
 
+//-(id)initWithName:(NSString*)name productURL:(NSString*)productURL productImageURL:(NSString*)productImageURL{
 -(id)initWithName:(NSString*)name{
-    
     
     self = [super init];
     
     if(self) {
         self.name = name;
+//        self.productURL = productURL;
+//        self.productImageURL = productImageURL;
         
     }
     

@@ -15,9 +15,15 @@
 
 
 
+
 @property (strong, nonatomic) NSMutableArray *companiesArray;
+//@property (strong, nonatomic) NSMutableArray *imageURLArray;
+
 
 -(NSMutableArray*)createData;
 +(DataAccessObject*)sharedDataAccessObject;
+-(void)addCompany:(Company*)company;
+-(NSMutableArray*)refreshData;
+
 
 @end

@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Aditya Narayan. All rights reserved.
 //
 
+#import "ProductEditingViewController.h"
 #import "ProductViewController.h"
 #import "WebKitViewController.h"
 #import "Product.h"
 #import "Company.h"
+#import "DataAccessObject.h"
 
 @interface ProductViewController ()
 
@@ -32,20 +34,27 @@
     
     
     // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
+//     self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    
-    
+//    self.company.products = [[DataAccessObject sharedDataAccessObject]refreshData];
+        NSLog(@"%@", self.company.products);           
+//
     [self.tableView reloadData];
-    
+//
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,9 +135,25 @@
         }
 }
 
+-(void)insertNewObject{
+    
+    self.productEditingViewController.company = self.company;
+    
+    [self.navigationController
+     pushViewController:self.productEditingViewController
+     animated:YES];
+    
+    
+    
+}
 
     
-
+-(void)backToProducts{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+}
 
 
 

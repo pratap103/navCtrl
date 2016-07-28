@@ -12,14 +12,15 @@
 @implementation Company
 
 
--(id)initWithName:(NSString*)name{
+-(id)initWithName:(NSString*)name stockSymbol:(NSString*)stockSymbol imageURL:(NSString*)URL{
     
     
     self = [super init];
     
     if(self) {
         self.name = name;
-        
+        self.stockSymbol = stockSymbol;
+        self.myURL = URL;
         
     }
     

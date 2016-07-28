@@ -13,9 +13,12 @@
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray *products;
+@property (nonatomic, strong) NSString *myURL;
+@property (nonatomic, strong) NSString *stockSymbol;
 
 
--(id)initWithName:(NSString*)name;
+
+-(id)initWithName:(NSString*)name stockSymbol:(NSString*)stockSymbol imageURL:(NSString*)URL;
 
 
 @end

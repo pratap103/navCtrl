@@ -10,12 +10,16 @@
 #import "Company.h"
 
 @class WebKitViewController;
+@class ProductEditingViewController;
 
 @interface ProductViewController : UITableViewController
 
 @property (nonatomic, retain) Company * company;
 
 @property (retain, nonatomic) IBOutlet WebKitViewController *webKitViewController;
+@property (retain, nonatomic) IBOutlet ProductEditingViewController *productEditingViewController;
+
+-(void)backToProducts;
 
 
 @end

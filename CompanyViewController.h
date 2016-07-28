@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DataAccessObject.h"
+#import "Company.h"
 
 @class ProductViewController;
+@class EditingViewController;
 
 @interface CompanyViewController : UITableViewController
 
@@ -18,7 +20,9 @@
 @property (nonatomic, retain) NSArray* imageNameList;
 
 @property (nonatomic, retain) IBOutlet  ProductViewController * productViewController;
+@property (nonatomic, retain) IBOutlet EditingViewController * editingViewController;
 
 
+-(void)insertNewObject;
 
 @end
