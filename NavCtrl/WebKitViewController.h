@@ -10,4 +10,7 @@
 
 @interface WebKitViewController : UIViewController
 
+@property (nonatomic, strong) NSString* productURL;
+
+
 @end

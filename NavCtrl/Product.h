@@ -14,12 +14,12 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *productURL;
 @property (nonatomic, strong) NSString *productImageURL;
-
+@property (nonatomic, strong) UIImage *productImage;
 
 
 //-(id)initWithName:(NSString*)name productURL:(NSString*)productURL productImageURL:(NSString*)productImageURL;
 
--(id)initWithName:(NSString*)name;
+-(id)initWithName:(NSString*)name productURL:(NSString*)productURL productImageURL:(NSString*)productImageURL;
 
 
 @end

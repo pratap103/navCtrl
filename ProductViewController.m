@@ -87,6 +87,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.text = [[self.company.products objectAtIndex:[indexPath row]] name];
+    cell.imageView.image = [[self.company.products objectAtIndex:[indexPath row]] productImage];
     
     return cell;
     
@@ -99,6 +100,7 @@
 {
    
     self.webKitViewController.title = [[self.company.products objectAtIndex:[indexPath row]] name];
+    self.webKitViewController.productURL = [[self.company.products objectAtIndex:[indexPath row]] productURL];
     [self.navigationController pushViewController:self.webKitViewController animated:YES];
     
     

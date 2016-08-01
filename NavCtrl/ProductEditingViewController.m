@@ -87,7 +87,7 @@
     
     
     
-    Product *product = [[Product alloc] initWithName:self.productName.text];
+    Product *product = [[Product alloc] initWithName:self.productName.text productURL:self.productURL.text productImageURL:self.productImageURL.text];
     [self.company.products addObject:product];
 //    [[DataAccessObject sharedDataAccessObject]addProduct:product];
     
