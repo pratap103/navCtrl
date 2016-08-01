@@ -6,6 +6,7 @@
 //  Copyright © 2016 Aditya Narayan. All rights reserved.
 //
 
+#import "CompanyViewController.h"
 #import "ProductEditingViewController.h"
 #import "ProductViewController.h"
 #import "DataAccessObject.h"
@@ -45,12 +46,13 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     companyNexus.products = [NSMutableArray arrayWithObjects:n5X, n6P, n9, nil];
     
     
+    
 
     
     
 
     self.companiesArray = [NSMutableArray arrayWithObjects: companyApple, companySamsung, companyBlackberry, companyNexus, nil];
-    
+
     return self.companiesArray;
 }
 
@@ -63,8 +65,9 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     @synchronized ([DataAccessObject class]) {
         if (!_sharedDataAccessObject)
-            [[self alloc]init];
-            
+            _sharedDataAccessObject = [[DataAccessObject alloc]init];
+//            [_sharedDataAccessObject createData];
+        
             return _sharedDataAccessObject;
         
         
@@ -106,9 +109,11 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     [self.companiesArray addObject:company];
     
-
-
+//    NSLog(@"%@", self.companiesArray);
+//
 }
+
+
 
 
 

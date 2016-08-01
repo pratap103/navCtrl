@@ -21,6 +21,13 @@
         self.name = name;
         self.stockSymbol = stockSymbol;
         self.myURL = URL;
+        NSURL *myURL = [NSURL URLWithString:URL];
+        NSData *data = [NSData dataWithContentsOfURL : myURL];
+        self.logoImage = [UIImage imageWithData: data];
+        
+        
+        
+
         
     }
     

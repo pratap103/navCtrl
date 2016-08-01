@@ -14,7 +14,8 @@
 #import "EditingViewController.h"
 
 @interface CompanyViewController ()
-
+@property (nonatomic, strong) DataAccessObject *dao;
+@property (nonatomic, strong) NSMutableArray *companies;
 @end
 
 @implementation CompanyViewController
@@ -33,11 +34,16 @@
 {
     [super viewDidLoad];
     
-    DataAccessObject *myData = [[DataAccessObject alloc] init];
-    self.companyList = [myData createData];
-//    DataAccessObject *myData2 = [[DataAccessObject alloc] init];          Test code for singleton
-//    NSLog(@"%@", myData2);
+    self.companies = [[DataAccessObject sharedDataAccessObject] createData];
+    [self.tableView reloadData];
     
+//    self.dao = [DataAccessObject sharedDataAccessObject];
+//    self.companies = self.dao.companiesArray;
+//    
+    
+    
+    self.tableView.allowsSelection = YES
+    ;
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.leftBarButtonItem = addButton;
     
@@ -50,14 +56,13 @@
     
 
     // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
+//     self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    
-
     
     self.title = @"Mobile device makers";
     
@@ -66,10 +71,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
-    self.companyList = [[DataAccessObject sharedDataAccessObject]refreshData];
-//    NSLog(@"%@", self.companyList);       test code
-    [self.tableView reloadData];
     
+    
+
+    [self.tableView reloadData];
     
     
 }
@@ -93,7 +98,7 @@
 {
 
     // Return the number of rows in the section.
-    return [self.companyList count];
+    return [self.companies count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,30 +111,40 @@
     
     // Configure the cell...
     
-    cell.textLabel.text = [[self.companyList objectAtIndex:[indexPath row]] name];
-    NSString* imageURL = [[self.companyList objectAtIndex:[indexPath row]] myURL];
-    
-    NSURLSession * session = [NSURLSession sharedSession];
-    NSURL * url = [NSURL URLWithString: imageURL];
-    NSURLSessionDataTask * dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-                                       {
-                                           
-                                           
-                                           UIImage *image = [UIImage imageWithData:data];
-                                           dispatch_async(dispatch_get_main_queue(), ^{
-                                               cell.imageView.image = image;
-                                               [self.tableView reloadData];
-                                           });
-                                           
-
-                                           
-                                       }];
-    
+    cell.textLabel.text = [[self.companies objectAtIndex:[indexPath row]] name];
+    cell.imageView.image = [[self.companies objectAtIndex:[indexPath row]] logoImage];
     
 
+//    NSString* imageURL = [[self.companies objectAtIndex:[indexPath row]] myURL];
+    // no image is set, set the default image
     
-    [dataTask resume];         //Asychronous method
+    //move this to dao, when you create the companies
+//    NSURLSession * session = [NSURLSession sharedSession];
+//    NSURL * url = [NSURL URLWithString: imageURL];
+//    NSURLSessionDataTask * dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+//                                       {
+//                                           
+//                                           
+//                                           UIImage *image = [UIImage imageWithData:data];
+//                                           dispatch_async(dispatch_get_main_queue(), ^{
+//                                               cell.imageView.image = image;
+//                                               [self.tableView reloadData];
+//                                           });
+//                                           
+//
+//                                           
+//                                       }];
+//    
+//    
+//
+//    
+//    [dataTask resume];         //Asychronous method
+//
     
+//    NSString *imageURL = [[self.companies objectAtIndex:[indexPath row]] myURL];
+//    
+//    NSURL * url = [NSURL URLWithString:imageURL];
+//    
     
 
     
@@ -139,8 +154,9 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {                //delete cell
-        [self.companyList removeObjectAtIndex:indexPath.row];
+        [self.companies removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [[DataAccessObject sharedDataAccessObject]updateCompaniesArray:self.companyList];
     }
     else if
         (editingStyle == UITableViewCellEditingStyleInsert){
@@ -154,12 +170,20 @@
     return YES;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    NSString *stringToMove = self.companyList[sourceIndexPath.row];
-    [self.companyList removeObjectAtIndex:sourceIndexPath.row];
-    [self.companyList insertObject:stringToMove atIndex:destinationIndexPath.row];
+    Company *companyToMove = self.companies[sourceIndexPath.row];
+    [self.companies removeObjectAtIndex:sourceIndexPath.row];
+    [self.companies insertObject:companyToMove atIndex:destinationIndexPath.row];
+    
 }
 
 -(void)insertNewObject{
@@ -180,14 +204,9 @@
 //    
 //}
 
-/*
+
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+
 
 /*
 // Override to support editing the table view.
@@ -227,8 +246,8 @@
 {
 
     
-    self.productViewController.title = [[self.companyList objectAtIndex:[indexPath row]] name];
-    self.productViewController.company = [self.companyList objectAtIndex:[indexPath row]];
+    self.productViewController.title = [[self.companies objectAtIndex:[indexPath row]] name];
+    self.productViewController.company = [self.companies objectAtIndex:[indexPath row]];
     
     
     [self.navigationController
