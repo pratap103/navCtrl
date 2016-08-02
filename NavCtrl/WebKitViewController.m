@@ -8,6 +8,7 @@
 
 #import "WebKitViewController.h"
 #import "ProductViewController.h"
+#import "ProductEditingViewController.h"
 
 @import WebKit;
 
@@ -64,6 +65,16 @@
         [self.view addSubview:webView];
     
     
+//    if (self.editButtonItem) {
+//        [self.navigationController
+//         pushViewController:self.productEditingViewController
+//         animated:YES];
+//        
+//        self.productEditingViewController.productName.text = self.name;
+//        self.productEditingViewController.productURL.text = self.productURL;
+//        self.productEditingViewController.productImageURL.text = self.productImageURL;
+//        
+//    }
 
     
     

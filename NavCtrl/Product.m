@@ -19,9 +19,32 @@
         self.name = name;
         self.productURL = productURL;
         self.productImageURL = productImageURL;
-        NSURL *myURL = [NSURL URLWithString:productImageURL];
-        NSData *data = [NSData dataWithContentsOfURL : myURL];
-        self.productImage = [UIImage imageWithData: data];
+        
+        
+        if (self.productImage == nil) {
+            
+        
+        
+        NSURLSession * session = [NSURLSession sharedSession];
+        NSURL * url = [NSURL URLWithString:productImageURL];
+        NSURLSessionDataTask * dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                           {
+                                               
+                                               
+                                               self.productImage = [UIImage imageWithData: data];
+                                               dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                               });
+                                               
+                                               
+                                               
+                                           }];
+        
+        
+        
+        
+        [dataTask resume];         //Asychronous method
+        
+        }
 
         
     }

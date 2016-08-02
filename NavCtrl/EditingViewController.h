@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class CompanyViewController;
 @interface EditingViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UITextField *companyName;
 @property (retain, nonatomic) IBOutlet UITextField *stockSymbol;

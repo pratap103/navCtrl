@@ -9,6 +9,7 @@
 #import "EditingViewController.h"
 #import "Company.h"
 #import "DataAccessObject.h"
+#import "CompanyViewController.h"
 
 @interface EditingViewController ()
 
@@ -84,13 +85,24 @@
     
     Company *company = [[Company alloc] initWithName:self.companyName.text stockSymbol:self.stockSymbol.text imageURL:self.companyURL.text];
     
+    
+    NSURL *url = [NSURL URLWithString:self.companyURL.text];
+    
+    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+    
+    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+    
+    company.logoImage = tmpImage;
+    
+
+    
     [[DataAccessObject sharedDataAccessObject] addCompany:company];
     
     self.companyName.text = @"";
     self.companyURL.text = @"";
     self.stockSymbol.text= @"";
     
-    
+//    [CompanyViewController.tableView reloadData];
     [self.navigationController popViewControllerAnimated:YES];
 
     

@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProductEditingViewController;
 @interface WebKitViewController : UIViewController
 
+@property (retain, nonatomic) IBOutlet ProductEditingViewController *productEditingViewController;
+@property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* productURL;
+@property (nonatomic, strong) NSString* productImageURL;
 
 
 @end

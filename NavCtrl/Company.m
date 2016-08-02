@@ -21,13 +21,35 @@
         self.name = name;
         self.stockSymbol = stockSymbol;
         self.myURL = URL;
-        NSURL *myURL = [NSURL URLWithString:URL];
-        NSData *data = [NSData dataWithContentsOfURL : myURL];
-        self.logoImage = [UIImage imageWithData: data];
         
         
+        if (self.logoImage == nil) {
+            
+       
         
+            NSURLSession * session = [NSURLSession sharedSession];
+            NSURL * url = [NSURL URLWithString:URL];
+            NSURLSessionDataTask * dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                               {
+        
+                                                   self.logoImage = [UIImage imageWithData: data];
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       
 
+                                                   });
+        
+        
+        
+                                               }];
+        
+        
+        
+        
+            [dataTask resume];         //Asychronous method
+        
+       
+        
+        }
         
     }
     

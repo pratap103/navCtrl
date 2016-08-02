@@ -91,18 +91,28 @@
     [self.company.products addObject:product];
 //    [[DataAccessObject sharedDataAccessObject]addProduct:product];
     
+    NSURL *url = [NSURL URLWithString:self.productImageURL.text];
+    
+    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+    
+    UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+    
+    product.productImage = tmpImage;
+
+    
     if (self.company.products == NULL) {
         self.company.products = [[NSMutableArray alloc] init];
         [self.company.products addObject:product];
     }
+    
     
     self.productName.text = @"";
     self.productURL.text = @"";
     self.productImageURL.text= @"";
     
     
+    
     [self.navigationController popViewControllerAnimated:YES];
-
     
     
 }
