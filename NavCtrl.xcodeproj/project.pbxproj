@@ -26,6 +26,7 @@
 		BA03F94A1D3E8FC100B3C4BF /* DataAccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03F9491D3E8FC100B3C4BF /* DataAccessObject.m */; };
 		BA53FDEF1D5293BE004D4D0A /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA53FDED1D5293BE004D4D0A /* EditViewController.m */; };
 		BA53FDF01D5293BE004D4D0A /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA53FDEE1D5293BE004D4D0A /* EditViewController.xib */; };
+		BA53FDF21D53D91C004D4D0A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA53FDF11D53D91C004D4D0A /* Launch Screen.storyboard */; };
 		BA56CC9F1D3576A300C1C4A4 /* apple.gif in Resources */ = {isa = PBXBuildFile; fileRef = BA56CC9E1D3576A300C1C4A4 /* apple.gif */; };
 		BA56CCA11D3576A800C1C4A4 /* samsung.png in Resources */ = {isa = PBXBuildFile; fileRef = BA56CCA01D3576A800C1C4A4 /* samsung.png */; };
 		BA56CCA31D3576AC00C1C4A4 /* nexus.png in Resources */ = {isa = PBXBuildFile; fileRef = BA56CCA21D3576AC00C1C4A4 /* nexus.png */; };
@@ -76,6 +77,7 @@
 		BA53FDEC1D5293BE004D4D0A /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
 		BA53FDED1D5293BE004D4D0A /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
 		BA53FDEE1D5293BE004D4D0A /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditViewController.xib; path = ../EditViewController.xib; sourceTree = "<group>"; };
+		BA53FDF11D53D91C004D4D0A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BA56CC9E1D3576A300C1C4A4 /* apple.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = apple.gif; sourceTree = "<group>"; };
 		BA56CCA01D3576A800C1C4A4 /* samsung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samsung.png; sourceTree = "<group>"; };
 		BA56CCA21D3576AC00C1C4A4 /* nexus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nexus.png; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		48A656A818163BF200746D36 = {
 			isa = PBXGroup;
 			children = (
+				BA53FDF11D53D91C004D4D0A /* Launch Screen.storyboard */,
 				48A656BA18163BF200746D36 /* NavCtrl */,
 				48A656D318163BF200746D36 /* NavCtrlTests */,
 				48A656B318163BF200746D36 /* Frameworks */,
@@ -318,6 +321,7 @@
 				BA56CCA51D3576B000C1C4A4 /* BlackBerry.png in Resources */,
 				BACD5CA11D5262C7009F4A26 /* ProductEditViewController.xib in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
+				BA53FDF21D53D91C004D4D0A /* Launch Screen.storyboard in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				BA56CC9F1D3576A300C1C4A4 /* apple.gif in Resources */,
 				BA56CCA11D3576A800C1C4A4 /* samsung.png in Resources */,
@@ -468,14 +472,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -484,14 +487,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

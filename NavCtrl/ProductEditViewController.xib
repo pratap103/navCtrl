@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductEditViewController">
@@ -18,23 +19,43 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xLT-IB-ucY">
-                    <rect key="frame" x="96" y="334" width="416" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xLT-IB-ucY">
+                    <rect key="frame" x="24" y="285" width="560" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="xLT-IB-ucY" secondAttribute="height" multiplier="56:3" id="w1l-Y0-97w"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product Image URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sQy-eh-G0A">
-                    <rect key="frame" x="96" y="444" width="416" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product Image URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sQy-eh-G0A">
+                    <rect key="frame" x="24" y="374" width="560" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="sQy-eh-G0A" secondAttribute="height" multiplier="56:3" id="Mat-Yr-50b"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-p8-KXo">
-                    <rect key="frame" x="96" y="236" width="421" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-p8-KXo">
+                    <rect key="frame" x="24" y="197" width="560" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="9Rd-p8-KXo" secondAttribute="height" multiplier="56:3" id="T0Y-UM-o2k"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="sQy-eh-G0A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="6NS-bM-7kz"/>
+                <constraint firstItem="sQy-eh-G0A" firstAttribute="top" secondItem="xLT-IB-ucY" secondAttribute="bottom" constant="59" id="77s-UZ-eO0"/>
+                <constraint firstAttribute="trailing" secondItem="xLT-IB-ucY" secondAttribute="trailing" constant="16" id="Cob-HH-Xy6"/>
+                <constraint firstAttribute="trailing" secondItem="sQy-eh-G0A" secondAttribute="trailing" constant="16" id="NPv-FA-WWL"/>
+                <constraint firstAttribute="trailing" secondItem="9Rd-p8-KXo" secondAttribute="trailing" constant="16" id="Rfq-SP-eLg"/>
+                <constraint firstItem="9Rd-p8-KXo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="Smx-og-CzY"/>
+                <constraint firstItem="9Rd-p8-KXo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="197" id="Ud3-wa-b0o"/>
+                <constraint firstItem="xLT-IB-ucY" firstAttribute="top" secondItem="9Rd-p8-KXo" secondAttribute="bottom" constant="58" id="Zqf-z4-ZH8"/>
+                <constraint firstItem="xLT-IB-ucY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="dKS-Zs-kGS"/>
+            </constraints>
         </view>
     </objects>
 </document>

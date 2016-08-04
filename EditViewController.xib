@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditViewController">
@@ -18,23 +19,43 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ERS-Qo-6kB">
-                    <rect key="frame" x="107" y="196" width="310" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Stock Symbol" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qkO-La-sQj">
+                    <rect key="frame" x="28" y="285" width="545" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="qkO-La-sQj" secondAttribute="height" multiplier="109:6" id="suT-GU-gLe"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Stock Symbol" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qkO-La-sQj">
-                    <rect key="frame" x="107" y="278" width="310" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Logo URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tTB-Wu-xKt">
+                    <rect key="frame" x="28" y="372" width="545" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="tTB-Wu-xKt" secondAttribute="height" multiplier="109:6" id="pe6-uH-yh1"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Logo URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tTB-Wu-xKt">
-                    <rect key="frame" x="107" y="376" width="310" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ERS-Qo-6kB">
+                    <rect key="frame" x="28" y="198" width="545" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ERS-Qo-6kB" secondAttribute="height" multiplier="109:6" id="pec-g2-gxE"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ERS-Qo-6kB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="198" id="5Zm-Uh-d4f"/>
+                <constraint firstAttribute="trailing" secondItem="tTB-Wu-xKt" secondAttribute="trailing" constant="27" id="HJc-oe-KeA"/>
+                <constraint firstItem="tTB-Wu-xKt" firstAttribute="top" secondItem="qkO-La-sQj" secondAttribute="bottom" constant="57" id="IzM-kw-jvS"/>
+                <constraint firstItem="qkO-La-sQj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="Yx5-6q-vbM"/>
+                <constraint firstItem="tTB-Wu-xKt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="bdH-6O-9xd"/>
+                <constraint firstItem="ERS-Qo-6kB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="fTR-zu-Ewr"/>
+                <constraint firstAttribute="trailing" secondItem="qkO-La-sQj" secondAttribute="trailing" constant="27" id="gK4-Dh-C5q"/>
+                <constraint firstAttribute="trailing" secondItem="ERS-Qo-6kB" secondAttribute="trailing" constant="27" id="upV-4y-e1C"/>
+                <constraint firstItem="qkO-La-sQj" firstAttribute="top" secondItem="ERS-Qo-6kB" secondAttribute="bottom" constant="57" id="yOj-hM-ag3"/>
+            </constraints>
         </view>
     </objects>
 </document>
