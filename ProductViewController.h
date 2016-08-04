@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Company.h"
+#import "EditViewController.h"
 
 @class WebKitViewController;
-@class ProductEditingViewController;
+@class ProductEditViewController;
 
 @interface ProductViewController : UITableViewController
 
 @property (nonatomic, retain) Company * company;
 
 @property (retain, nonatomic) IBOutlet WebKitViewController *webKitViewController;
-@property (retain, nonatomic) IBOutlet ProductEditingViewController *productEditingViewController;
+@property (retain, nonatomic) ProductEditViewController *productEditViewController;
+@property (nonatomic, retain) NSString * documentsDirectory;
 
 -(void)backToProducts;
 

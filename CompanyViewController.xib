@@ -3,13 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompanyViewController">
             <connections>
-                <outlet property="editingViewController" destination="Ptx-jQ-3eN" id="m11-6E-kU9"/>
                 <outlet property="productViewController" destination="Xwu-Pd-0Xh" id="zKe-GD-Zeh"/>
                 <outlet property="view" destination="8" id="11"/>
             </connections>
@@ -28,14 +25,15 @@
         <viewController id="Xwu-Pd-0Xh" userLabel="ProductViewController" customClass="ProductViewController">
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
             <connections>
-                <outlet property="productEditingViewController" destination="Cil-iW-bhQ" id="aCG-7i-ZdU"/>
                 <outlet property="webKitViewController" destination="4wS-As-jn2" id="Gmm-yQ-Ztl"/>
             </connections>
+            <point key="canvasLocation" x="-112" y="260"/>
         </viewController>
         <view contentMode="scaleToFill" id="bKn-UP-3Lv">
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="-45" y="1366"/>
         </view>
         <viewController id="4wS-As-jn2" userLabel="WebKitViewController" customClass="WebKitViewController">
             <layoutGuides>
@@ -47,124 +45,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </view>
-            <connections>
-                <outlet property="productEditingViewController" destination="Cil-iW-bhQ" id="GsV-54-oP2"/>
-            </connections>
             <point key="canvasLocation" x="1187" y="-722"/>
-        </viewController>
-        <viewController id="Ptx-jQ-3eN" userLabel="EditingViewController" customClass="EditingViewController">
-            <layoutGuides>
-                <viewControllerLayoutGuide type="top" id="IGs-19-hrb"/>
-                <viewControllerLayoutGuide type="bottom" id="04M-fj-wpM"/>
-            </layoutGuides>
-            <view key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QET-3S-NQb">
-                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LNC-B5-t3F">
-                        <rect key="frame" x="159" y="287" width="450" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="LNC-B5-t3F" secondAttribute="height" multiplier="15:1" id="hgD-ij-qEy"/>
-                        </constraints>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                    </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Stock Symbol" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RrE-iW-qd3">
-                        <rect key="frame" x="159" y="382" width="450" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="RrE-iW-qd3" secondAttribute="height" multiplier="15:1" id="pCP-4T-lS0"/>
-                        </constraints>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Image URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SIn-35-9ah">
-                        <rect key="frame" x="159" y="481" width="450" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="SIn-35-9ah" secondAttribute="height" multiplier="15:1" id="iOM-kO-Mt8"/>
-                        </constraints>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
-                </subviews>
-                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="SIn-35-9ah" secondAttribute="trailing" constant="139" id="4Au-W7-nrc"/>
-                    <constraint firstItem="SIn-35-9ah" firstAttribute="leading" secondItem="QET-3S-NQb" secondAttribute="leadingMargin" constant="139" id="9AC-68-Fs9"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RrE-iW-qd3" secondAttribute="trailing" constant="139" id="AZp-aQ-DVP"/>
-                    <constraint firstItem="SIn-35-9ah" firstAttribute="top" secondItem="RrE-iW-qd3" secondAttribute="bottom" constant="69" id="KMO-oV-bul"/>
-                    <constraint firstItem="RrE-iW-qd3" firstAttribute="leading" secondItem="QET-3S-NQb" secondAttribute="leadingMargin" constant="139" id="Yj4-KV-R8o"/>
-                    <constraint firstItem="LNC-B5-t3F" firstAttribute="top" secondItem="IGs-19-hrb" secondAttribute="bottom" constant="267" id="byw-zs-wrp"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="LNC-B5-t3F" secondAttribute="trailing" constant="139" id="t7D-dr-1bT"/>
-                    <constraint firstItem="LNC-B5-t3F" firstAttribute="leading" secondItem="QET-3S-NQb" secondAttribute="leadingMargin" constant="139" id="yGs-hU-SNh"/>
-                    <constraint firstItem="RrE-iW-qd3" firstAttribute="top" secondItem="LNC-B5-t3F" secondAttribute="bottom" constant="65" id="zAB-yx-2DD"/>
-                </constraints>
-            </view>
-            <connections>
-                <outlet property="companyName" destination="LNC-B5-t3F" id="JIt-sG-OlS"/>
-                <outlet property="companyURL" destination="SIn-35-9ah" id="fuG-6F-Q5n"/>
-                <outlet property="stockSymbol" destination="RrE-iW-qd3" id="8p6-o6-nek"/>
-            </connections>
-            <point key="canvasLocation" x="2010" y="-725"/>
-        </viewController>
-        <viewController id="Cil-iW-bhQ" userLabel="ProductEditingViewController" customClass="ProductEditingViewController">
-            <layoutGuides>
-                <viewControllerLayoutGuide type="top" id="E6H-so-TWv"/>
-                <viewControllerLayoutGuide type="bottom" id="TbU-05-dzD"/>
-            </layoutGuides>
-            <view key="view" contentMode="scaleToFill" id="C5b-4Z-wtK">
-                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LpY-Qa-55F">
-                        <rect key="frame" x="159" y="287" width="450" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="LpY-Qa-55F" secondAttribute="height" multiplier="15:1" id="Mya-ox-aja"/>
-                        </constraints>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                    </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jJ2-0k-E60">
-                        <rect key="frame" x="159" y="382" width="450" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="jJ2-0k-E60" secondAttribute="height" multiplier="15:1" id="LX0-5v-deH"/>
-                        </constraints>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                    </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Product Image URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hkN-oK-c9o">
-                        <rect key="frame" x="159" y="479" width="450" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="hkN-oK-c9o" secondAttribute="height" multiplier="15:1" id="HdR-c7-kHj"/>
-                        </constraints>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                    </textField>
-                </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="hkN-oK-c9o" secondAttribute="trailing" constant="139" id="2ii-4H-pIj"/>
-                    <constraint firstItem="jJ2-0k-E60" firstAttribute="top" secondItem="LpY-Qa-55F" secondAttribute="bottom" constant="65" id="4sM-AR-O5Y"/>
-                    <constraint firstItem="hkN-oK-c9o" firstAttribute="top" secondItem="jJ2-0k-E60" secondAttribute="bottom" constant="67" id="8Ek-W8-LR9"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="jJ2-0k-E60" secondAttribute="trailing" constant="139" id="JKw-mF-PsM"/>
-                    <constraint firstItem="hkN-oK-c9o" firstAttribute="leading" secondItem="C5b-4Z-wtK" secondAttribute="leadingMargin" constant="139" id="Klq-Sl-pZA"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="LpY-Qa-55F" secondAttribute="trailing" constant="139" id="Vle-ZZ-zZb"/>
-                    <constraint firstItem="jJ2-0k-E60" firstAttribute="leading" secondItem="C5b-4Z-wtK" secondAttribute="leadingMargin" constant="139" id="ax6-Qm-Fog"/>
-                    <constraint firstItem="LpY-Qa-55F" firstAttribute="top" secondItem="E6H-so-TWv" secondAttribute="bottom" constant="267" id="nh6-e3-fbb"/>
-                    <constraint firstItem="LpY-Qa-55F" firstAttribute="leading" secondItem="C5b-4Z-wtK" secondAttribute="leadingMargin" constant="139" id="pRc-Y3-OEU"/>
-                </constraints>
-            </view>
-            <connections>
-                <outlet property="productImageURL" destination="hkN-oK-c9o" id="MIX-M2-Hzp"/>
-                <outlet property="productName" destination="LpY-Qa-55F" id="bl1-e3-ZEg"/>
-                <outlet property="productURL" destination="jJ2-0k-E60" id="1bj-95-YNC"/>
-            </connections>
-            <point key="canvasLocation" x="2853" y="-722"/>
         </viewController>
     </objects>
 </document>

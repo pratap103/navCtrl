@@ -11,7 +11,8 @@
 #import "Company.h"
 #import "Product.h"
 #import "DataAccessObject.h"
-#import "EditingViewController.h"
+
+#import "EditViewController.h"
 
 @interface CompanyViewController ()
 @property (nonatomic, strong) DataAccessObject *dao;
@@ -39,7 +40,8 @@
     
 //    self.dao = [DataAccessObject sharedDataAccessObject];
 //    self.companies = self.dao.companiesArray;
-//    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    self.documentsDirectory = [paths objectAtIndex:0];
     
     
     self.tableView.allowsSelection = YES
@@ -48,7 +50,7 @@
     self.navigationItem.leftBarButtonItem = addButton;
     
 
-    
+    self.tableView.allowsSelectionDuringEditing = YES;
     
     
     
@@ -114,10 +116,12 @@
     }
     
     // Configure the cell...
-    
-    cell.textLabel.text = [[self.companies objectAtIndex:[indexPath row]] name];
-    cell.imageView.image = [[self.companies objectAtIndex:[indexPath row]] logoImage];
-    
+    NSString * name = [[self.companies objectAtIndex:[indexPath row]] name];
+    NSString * imageName = [NSString stringWithFormat:@"%@.png", name ];
+    NSString *imagePath = [self.documentsDirectory stringByAppendingPathComponent:imageName];
+    cell.textLabel.text = name;
+    cell.imageView.image = [UIImage imageWithContentsOfFile:imagePath];
+    NSLog(@"image loaded");
 
 //    NSString* imageURL = [[self.companies objectAtIndex:[indexPath row]] myURL];
     // no image is set, set the default image
@@ -192,8 +196,10 @@
 
 -(void)insertNewObject{
     
+     self.editViewController = [[EditViewController alloc] initWithNibName:@"EditViewController" bundle:nil];
+    
     [self.navigationController
-     pushViewController:self.editingViewController
+     pushViewController:self.editViewController
      animated:YES];
     
 }
@@ -250,15 +256,35 @@
 {
 
     
-    self.productViewController.title = [[self.companies objectAtIndex:[indexPath row]] name];
-    self.productViewController.company = [self.companies objectAtIndex:[indexPath row]];
+    if (tableView.editing == YES) {
+        
+        self.editViewController = [[EditViewController alloc] initWithNibName:@"EditViewController" bundle:nil];
+        
+        self.editViewController.company = [self.companies objectAtIndex:[indexPath row]];
+        self.editViewController.editingCompany = YES;
+        
+        
+        
+        [self.navigationController
+         pushViewController:self.editViewController
+         animated:YES];
+
+    }
+    if (tableView.editing == NO) {
+    
+        self.editViewController = [[EditViewController alloc] initWithNibName:@"EditViewController" bundle:nil];
+    
+        self.productViewController.title = [[self.companies objectAtIndex:[indexPath row]] name];
+        self.productViewController.company = [self.companies objectAtIndex:[indexPath row]];
+        self.editViewController.editingCompany = NO;
     
     
-    [self.navigationController
+        [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
     
-
+    }
+    
 }
 
 - (void) imageDownloaded:(NSNotification *)notification{
@@ -266,5 +292,11 @@
     [self.tableView reloadData];
 }
 
+//- (void)navigationController:(UINavigationController *)navigationController
+//      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+//{
+//    [self viewWillAppear:animated];
+//}
+//
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Aditya Narayan. All rights reserved.
 //
 
-#import "ProductEditingViewController.h"
+#import "ProductEditViewController.h"
 #import "ProductViewController.h"
 #import "WebKitViewController.h"
 #import "Product.h"
@@ -32,6 +32,9 @@
 {
     [super viewDidLoad];
     
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    self.documentsDirectory = [paths objectAtIndex:0];
+
     
     // Uncomment the following line to preserve selection between presentations.
 //     self.clearsSelectionOnViewWillAppear = NO;
@@ -92,7 +95,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.text = [[self.company.products objectAtIndex:[indexPath row]] name];
-    cell.imageView.image = [[self.company.products objectAtIndex:[indexPath row]] productImage];
+    
+    NSString * name = [[self.company.products objectAtIndex:[indexPath row]] name];
+    NSString * imageName = [NSString stringWithFormat:@"%@.png", name ];
+    NSString *imagePath = [self.documentsDirectory stringByAppendingPathComponent:imageName];
+//    cell.textLabel.text = name;
+    cell.imageView.image = [UIImage imageWithContentsOfFile:imagePath];
+
     
     return cell;
     
@@ -105,7 +114,9 @@
 {
    
     self.webKitViewController.title = [[self.company.products objectAtIndex:[indexPath row]] name];
-    self.webKitViewController.productURL = [[self.company.products objectAtIndex:[indexPath row]] productURL];
+    self.webKitViewController.product = [self.company.products objectAtIndex:[indexPath row]];
+    self.webKitViewController.company = self.company;
+    self.webKitViewController.productIndex = indexPath;
     [self.navigationController pushViewController:self.webKitViewController animated:YES];
     
     
@@ -144,12 +155,15 @@
 
 -(void)insertNewObject{
     
-    self.productEditingViewController.company = self.company;
+    self.productEditViewController = [[ProductEditViewController alloc] initWithNibName:@"ProductEditViewController" bundle:nil];
+
+    
+    self.productEditViewController.company = self.company;
     
     [self.navigationController
-     pushViewController:self.productEditingViewController
+     pushViewController:self.productEditViewController
      animated:YES];
-    
+    self.productEditViewController.editingProduct = NO;
     
     
 }

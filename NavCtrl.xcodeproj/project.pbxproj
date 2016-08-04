@@ -24,7 +24,8 @@
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
 		BA03F94A1D3E8FC100B3C4BF /* DataAccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03F9491D3E8FC100B3C4BF /* DataAccessObject.m */; };
-		BA0856821D46A80200314E9E /* EditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0856811D46A80200314E9E /* EditingViewController.m */; };
+		BA53FDEF1D5293BE004D4D0A /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA53FDED1D5293BE004D4D0A /* EditViewController.m */; };
+		BA53FDF01D5293BE004D4D0A /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA53FDEE1D5293BE004D4D0A /* EditViewController.xib */; };
 		BA56CC9F1D3576A300C1C4A4 /* apple.gif in Resources */ = {isa = PBXBuildFile; fileRef = BA56CC9E1D3576A300C1C4A4 /* apple.gif */; };
 		BA56CCA11D3576A800C1C4A4 /* samsung.png in Resources */ = {isa = PBXBuildFile; fileRef = BA56CCA01D3576A800C1C4A4 /* samsung.png */; };
 		BA56CCA31D3576AC00C1C4A4 /* nexus.png in Resources */ = {isa = PBXBuildFile; fileRef = BA56CCA21D3576AC00C1C4A4 /* nexus.png */; };
@@ -33,7 +34,8 @@
 		BA56CCB01D35A75800C1C4A4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA56CCAF1D35A75800C1C4A4 /* WebKit.framework */; };
 		BA56CCB31D36E88800C1C4A4 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56CCB21D36E88800C1C4A4 /* Company.m */; };
 		BA56CCB61D36E8F000C1C4A4 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56CCB51D36E8F000C1C4A4 /* Product.m */; };
-		BADB34001D492BD500BCBC91 /* ProductEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BADB33FF1D492BD500BCBC91 /* ProductEditingViewController.m */; };
+		BACD5CA01D5262C7009F4A26 /* ProductEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BACD5C9E1D5262C7009F4A26 /* ProductEditViewController.m */; };
+		BACD5CA11D5262C7009F4A26 /* ProductEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BACD5C9F1D5262C7009F4A26 /* ProductEditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,8 +73,9 @@
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
 		BA03F9481D3E8FC100B3C4BF /* DataAccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccessObject.h; sourceTree = "<group>"; };
 		BA03F9491D3E8FC100B3C4BF /* DataAccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessObject.m; sourceTree = "<group>"; };
-		BA0856801D46A80200314E9E /* EditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingViewController.h; sourceTree = "<group>"; };
-		BA0856811D46A80200314E9E /* EditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingViewController.m; sourceTree = "<group>"; };
+		BA53FDEC1D5293BE004D4D0A /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
+		BA53FDED1D5293BE004D4D0A /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; };
+		BA53FDEE1D5293BE004D4D0A /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditViewController.xib; path = ../EditViewController.xib; sourceTree = "<group>"; };
 		BA56CC9E1D3576A300C1C4A4 /* apple.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = apple.gif; sourceTree = "<group>"; };
 		BA56CCA01D3576A800C1C4A4 /* samsung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samsung.png; sourceTree = "<group>"; };
 		BA56CCA21D3576AC00C1C4A4 /* nexus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nexus.png; sourceTree = "<group>"; };
@@ -84,8 +87,9 @@
 		BA56CCB21D36E88800C1C4A4 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		BA56CCB41D36E8F000C1C4A4 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		BA56CCB51D36E8F000C1C4A4 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
-		BADB33FE1D492BD500BCBC91 /* ProductEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEditingViewController.h; sourceTree = "<group>"; };
-		BADB33FF1D492BD500BCBC91 /* ProductEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEditingViewController.m; sourceTree = "<group>"; };
+		BACD5C9D1D5262C7009F4A26 /* ProductEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEditViewController.h; sourceTree = "<group>"; };
+		BACD5C9E1D5262C7009F4A26 /* ProductEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEditViewController.m; sourceTree = "<group>"; };
+		BACD5C9F1D5262C7009F4A26 /* ProductEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductEditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,10 +178,12 @@
 		48A656BA18163BF200746D36 /* NavCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				BADB33FE1D492BD500BCBC91 /* ProductEditingViewController.h */,
-				BADB33FF1D492BD500BCBC91 /* ProductEditingViewController.m */,
-				BA0856801D46A80200314E9E /* EditingViewController.h */,
-				BA0856811D46A80200314E9E /* EditingViewController.m */,
+				BA53FDEC1D5293BE004D4D0A /* EditViewController.h */,
+				BA53FDED1D5293BE004D4D0A /* EditViewController.m */,
+				BA53FDEE1D5293BE004D4D0A /* EditViewController.xib */,
+				BACD5C9D1D5262C7009F4A26 /* ProductEditViewController.h */,
+				BACD5C9E1D5262C7009F4A26 /* ProductEditViewController.m */,
+				BACD5C9F1D5262C7009F4A26 /* ProductEditViewController.xib */,
 				BA56CCAC1D358A4000C1C4A4 /* WebKitViewController.h */,
 				BA56CCAD1D358A4000C1C4A4 /* WebKitViewController.m */,
 				BA03F9481D3E8FC100B3C4BF /* DataAccessObject.h */,
@@ -308,7 +314,9 @@
 			files = (
 				BA56CCA31D3576AC00C1C4A4 /* nexus.png in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
+				BA53FDF01D5293BE004D4D0A /* EditViewController.xib in Resources */,
 				BA56CCA51D3576B000C1C4A4 /* BlackBerry.png in Resources */,
+				BACD5CA11D5262C7009F4A26 /* ProductEditViewController.xib in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				BA56CC9F1D3576A300C1C4A4 /* apple.gif in Resources */,
@@ -333,13 +341,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA03F94A1D3E8FC100B3C4BF /* DataAccessObject.m in Sources */,
-				BA0856821D46A80200314E9E /* EditingViewController.m in Sources */,
 				BA56CCB61D36E8F000C1C4A4 /* Product.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				BA56CCB31D36E88800C1C4A4 /* Company.m in Sources */,
+				BACD5CA01D5262C7009F4A26 /* ProductEditViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				BA56CCAE1D358A4000C1C4A4 /* WebKitViewController.m in Sources */,
-				BADB34001D492BD500BCBC91 /* ProductEditingViewController.m in Sources */,
+				BA53FDEF1D5293BE004D4D0A /* EditViewController.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 			);
@@ -467,6 +475,7 @@
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -482,6 +491,7 @@
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

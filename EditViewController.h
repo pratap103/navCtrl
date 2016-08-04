@@ -1,19 +1,21 @@
 //
-//  EditingViewController.h
+//  EditViewController.h
 //  NavCtrl
 //
-//  Created by Pratap Pandit on 7/25/16.
+//  Created by Pratap Pandit on 8/3/16.
 //  Copyright © 2016 Aditya Narayan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "Company.h"
 
+@interface EditViewController : UIViewController
 
-@class CompanyViewController;
-@interface EditingViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UITextField *companyName;
 @property (retain, nonatomic) IBOutlet UITextField *stockSymbol;
 @property (retain, nonatomic) IBOutlet UITextField *companyURL;
+@property BOOL editingCompany;
+@property (retain, nonatomic) Company* company;
 
 -(void)cancelEdit;
 -(void)saveEdit;

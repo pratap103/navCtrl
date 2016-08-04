@@ -8,7 +8,7 @@
 
 #import "WebKitViewController.h"
 #import "ProductViewController.h"
-#import "ProductEditingViewController.h"
+#import "ProductEditViewController.h"
 
 @import WebKit;
 
@@ -30,7 +30,8 @@
 //    self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProduct)];
+    self.navigationItem.rightBarButtonItem = editButton;
     
 
 }
@@ -41,7 +42,7 @@
     
     [super viewWillAppear:animated];
     
-    NSLog(@"%@", self.productURL);
+    NSLog(@"%@", self.product.productURL);
     
     
    
@@ -49,7 +50,7 @@
         WKWebView* webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
         webView.navigationDelegate = self;
         NSURLSession *session = [NSURLSession sharedSession];
-        NSURL* url = [NSURL URLWithString:self.productURL];
+        NSURL* url = [NSURL URLWithString:self.product.productURL];
 
         
         
@@ -65,17 +66,30 @@
         [self.view addSubview:webView];
     
     
-//    if (self.editButtonItem) {
-//        [self.navigationController
-//         pushViewController:self.productEditingViewController
-//         animated:YES];
-//        
-//        self.productEditingViewController.productName.text = self.name;
-//        self.productEditingViewController.productURL.text = self.productURL;
-//        self.productEditingViewController.productImageURL.text = self.productImageURL;
-//        
-//    }
+}
 
+-(void) editProduct{
+    
+    
+    
+    self.productEditViewController = [[ProductEditViewController alloc] initWithNibName:@"ProductEditViewController" bundle:nil];
+    
+    self.productEditViewController.company = self.company;
+    self.productEditViewController.product = self.product;
+    self.productEditViewController.productIndex= self.productIndex;
+    self.productEditViewController.editingProduct = YES;
+    
+    self.productEditViewController.productName.text = self.product.name;
+    self.productEditViewController.productURL.text = self.product.productURL;
+    self.productEditViewController.productImageURL.text = self.product.productImageURL;
+    
+    
+    [self.navigationController
+     pushViewController:self.productEditViewController
+     animated:YES];
+    
+    
+    
     
     
 }

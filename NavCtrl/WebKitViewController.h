@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Product.h"
+#import "ProductEditViewController.h"
 
-@class ProductEditingViewController;
 @interface WebKitViewController : UIViewController
 
-@property (retain, nonatomic) IBOutlet ProductEditingViewController *productEditingViewController;
+@property (retain, nonatomic) ProductEditViewController *productEditViewController;
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* productURL;
 @property (nonatomic, strong) NSString* productImageURL;
+@property (nonatomic, strong) NSIndexPath* productIndex;
+@property (retain, nonatomic) Company* company;
+@property (retain, nonatomic) Product* product;
 
+-(void)editProduct;
 
 @end

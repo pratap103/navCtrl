@@ -7,7 +7,7 @@
 //
 
 #import "CompanyViewController.h"
-#import "ProductEditingViewController.h"
+#import "ProductEditViewController.h"
 #import "ProductViewController.h"
 #import "DataAccessObject.h"
 #import "Product.h"
@@ -42,7 +42,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     Company *companyNexus = [[Company alloc] initWithName:@"Nexus mobile devices" stockSymbol:@"GOOG" imageURL:@"https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/X_from_Nexus_logo.svg/120px-X_from_Nexus_logo.svg.png"];
     Product *n5X = [[Product alloc] initWithName:@"5X" productURL:@"https://www.google.com/nexus/5x/" productImageURL:@"https://lh3.googleusercontent.com/P1_mBNk543linbcL0AtazL5Kr9Te0v7egH-uxhWoddVuSFeH-jfAt9dYB4ELnElYNw"];
     Product *n6P = [[Product alloc] initWithName:@"6P" productURL:@"https://store.google.com/product/nexus_6p" productImageURL:@"https://lh3.googleusercontent.com/IW5kkESaYgPvqetsNKtwq_0HZdVJRjWwC5BXeAi_1zPoFmXD8PmkmK7jDH_ZDgaytSqo"];                            //nexus products
-    Product *n9 = [[Product alloc] initWithName:@"9" productURL:@"https://www.google.com/nexus/9/" productImageURL:@"https://www.google.com/nexus/images/nexus9/N9-grid1-1600.jpg"];
+    Product *n9 = [[Product alloc] initWithName:@"9" productURL:@"https://www.google.com/nexus/9/" productImageURL:@"http://cdn.arstechnica.net/wp-content/uploads/2014/10/nexus9-640x470.jpg"];
     companyNexus.products = [NSMutableArray arrayWithObjects:n5X, n6P, n9, nil];
     
     

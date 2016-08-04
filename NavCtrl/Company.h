@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *products;
 @property (nonatomic, strong) NSString *myURL;
 @property (nonatomic, strong) NSString *stockSymbol;
-@property (nonatomic, strong) UIImage *logoImage;
+
 
 
 

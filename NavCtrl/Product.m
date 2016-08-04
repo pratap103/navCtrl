@@ -19,30 +19,43 @@
         self.name = name;
         self.productURL = productURL;
         self.productImageURL = productImageURL;
+       
         
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString * imageName = [NSString stringWithFormat:@"%@.png", self.name ];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
+        NSLog(@"%@", imagePath);
         
-        if (self.productImage == nil) {
+        if ([fileManager fileExistsAtPath:imagePath] == NO) {
             
+            
+            NSURL *url = [NSURL URLWithString:self.productImageURL];
+            
+            // 2
+            NSURLSessionDownloadTask *downloadPhotoTask = [[NSURLSession sharedSession]
+                                                           downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                                               NSError *err = nil;
+                                                               if ([fileManager fileExistsAtPath:imagePath] == NO) {
+//                                                                   NSLog(@"ABSOLUTE STRING: %@", location.path);
+                                                                   [fileManager copyItemAtPath:[location path] toPath:imagePath error:&err];
+                                                                   if (err) {
+                                                                       NSLog(@"%@", err.localizedDescription);
+                                                                   }
+                                                               }
+                                                               
+                                                                                                                         }];
+            // 4
+            [downloadPhotoTask resume];
+
+      
         
         
-        NSURLSession * session = [NSURLSession sharedSession];
-        NSURL * url = [NSURL URLWithString:productImageURL];
-        NSURLSessionDataTask * dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-                                           {
-                                               
-                                               
-                                               self.productImage = [UIImage imageWithData: data];
-                                               dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                               });
-                                               
-                                               
-                                               
-                                           }];
         
         
         
         
-        [dataTask resume];         //Asychronous method
         
         }
 

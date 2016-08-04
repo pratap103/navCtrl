@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DataAccessObject.h"
 #import "Company.h"
+#import "EditViewController.h"
 
 @class ProductViewController;
 @class EditingViewController;
@@ -20,7 +21,8 @@
 
 @property (nonatomic, retain) IBOutlet  ProductViewController * productViewController;
 @property (nonatomic, retain) IBOutlet EditingViewController * editingViewController;
-
+@property (nonatomic, retain) EditViewController * editViewController;
+@property (nonatomic, retain) NSString * documentsDirectory;
 
 -(void)insertNewObject;
 
