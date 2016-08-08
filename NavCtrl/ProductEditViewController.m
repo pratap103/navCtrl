@@ -172,7 +172,7 @@
             NSString *documentsDirectory = [paths objectAtIndex:0];
             NSString * imageName = [NSString stringWithFormat:@"%@.png", self.product.name ];
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-            NSLog(@"%@", imagePath);
+//            NSLog(@"%@", imagePath);
             
             //            if ([fileManager fileExistsAtPath:imagePath] == YES) {
             //                NSLog(@"file exists");
@@ -195,10 +195,8 @@
                                                                    }
                                                                }
                                                                
-//                                                               // 3
-//                                                               UIImage *downloadedImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:location]];
+
                                                            }];
-            // 4
             [downloadPhotoTask resume];
             
             

@@ -27,6 +27,8 @@
     
     if (self) {
         // Custom initialization
+        
+        
     }
     return self;
 }
@@ -36,6 +38,8 @@
     [super viewDidLoad];
     
     self.companies = [[DataAccessObject sharedDataAccessObject] createData];
+    
+    
     [self.tableView reloadData];
     
 //    self.dao = [DataAccessObject sharedDataAccessObject];
@@ -51,35 +55,41 @@
     
 
     self.tableView.allowsSelectionDuringEditing = YES;
-    
-    
-    
-    
-    
+   
 
-    // Uncomment the following line to preserve selection between presentations.
-//     self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+//    self.stockPriceArray = [[NSMutableArray alloc]init];
+
+    
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
     
-    self.title = @"Mobile device makers";
+    self.title = @"Stock Tracker";
     
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+//    
+    [[DataAccessObject sharedDataAccessObject] stockData];
+    NSLog(@"stock prices are %@", self.stockPriceArray);
     
-
-    [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadStockData)
+                                                 name:@"stockDataDidDownload"
+                                               object:nil];
     
     
+    
+     [self.tableView reloadData];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
+    
+    
+    
     
     [self.tableView reloadData];
     
@@ -112,7 +122,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
@@ -120,40 +130,9 @@
     NSString * imageName = [NSString stringWithFormat:@"%@.png", name ];
     NSString *imagePath = [self.documentsDirectory stringByAppendingPathComponent:imageName];
     cell.textLabel.text = name;
-    cell.imageView.image = [UIImage imageWithContentsOfFile:imagePath];
-    NSLog(@"image loaded");
+    cell.detailTextLabel.text = [self.stockPriceArray objectAtIndex:[indexPath row]];
 
-//    NSString* imageURL = [[self.companies objectAtIndex:[indexPath row]] myURL];
-    // no image is set, set the default image
-    
-    //move this to dao, when you create the companies
-//    NSURLSession * session = [NSURLSession sharedSession];
-//    NSURL * url = [NSURL URLWithString: imageURL];
-//    NSURLSessionDataTask * dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-//                                       {
-//                                           
-//                                           
-//                                           UIImage *image = [UIImage imageWithData:data];
-//                                           dispatch_async(dispatch_get_main_queue(), ^{
-//                                               cell.imageView.image = image;
-//                                               [self.tableView reloadData];
-//                                           });
-//                                           
-//
-//                                           
-//                                       }];
-//    
-//    
-//
-//    
-//    [dataTask resume];         //Asychronous method
-//
-    
-//    NSString *imageURL = [[self.companies objectAtIndex:[indexPath row]] myURL];
-//    
-//    NSURL * url = [NSURL URLWithString:imageURL];
-//    
-    
+    cell.imageView.image = [UIImage imageWithContentsOfFile:imagePath];
 
     
     return cell;
@@ -204,49 +183,20 @@
     
 }
 
-
-//-(void)tableView:(UITableView *)tableView insertRowsAtIndexPath:(NSIndexPath *)lastRow{
-//    
-//    NSString *stringToAdd = @"Nikon";
-//    [self.companyList insertObject:stringToAdd atIndex:lastRow.row];
-//    
-//    
-//    
-//}
-
-
-// Override to support conditional editing of the table view.
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(void)loadStockData{
+    
+    
+    self.stockPriceArray = [[DataAccessObject sharedDataAccessObject] getStockDataArray];
+//    NSLog(@"stock prices are:%@",self.stockPriceArray);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    
+    
+    
+    
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Table view delegate
@@ -292,11 +242,5 @@
     [self.tableView reloadData];
 }
 
-//- (void)navigationController:(UINavigationController *)navigationController
-//      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-//{
-//    [self viewWillAppear:animated];
-//}
-//
 
 @end

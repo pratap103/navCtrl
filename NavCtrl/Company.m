@@ -21,12 +21,13 @@
         self.myURL = URL;
         
         
+        
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString * imageName = [NSString stringWithFormat:@"%@.png", self.name ];
         NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-        NSLog(@"%@", imagePath);
+//        NSLog(@"%@", imagePath);
         
         if ([fileManager fileExistsAtPath:imagePath] == YES) {
             

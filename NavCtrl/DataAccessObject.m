@@ -66,7 +66,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     @synchronized ([DataAccessObject class]) {
         if (!_sharedDataAccessObject)
             _sharedDataAccessObject = [[DataAccessObject alloc]init];
-//            [_sharedDataAccessObject createData];
+
         
             return _sharedDataAccessObject;
         
@@ -81,10 +81,6 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     @synchronized([DataAccessObject class])
     {
-//        NSAssert(_sharedDataAccessObject == nil, @"Attempted to allocate a second instance of a singleton.");     //Crashes app if an instance already exists.
-        
-//        NSLog(@"Tried to create another instance of a singleton");      //Prints to log instead
-       
         _sharedDataAccessObject = [super alloc];
         return _sharedDataAccessObject;
     }
@@ -115,8 +111,87 @@ static DataAccessObject* _sharedDataAccessObject = nil;
 
 
 
+-(void)stockData{
+    
+    self.stockArray = [[NSMutableArray alloc] init];
+    self.stockDataArray = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < self.companiesArray.count; i++) {
+        
+        self.stockArray[i] = [[self.companiesArray objectAtIndex:i] stockSymbol];
+        
+        
+        
+    }
+    
+//    NSLog(@"stock price array:%@", self.stockArray);
+    
+    NSString * stockString = [self.stockArray componentsJoinedByString:@","];
+//    NSLog(@"stock string %@",stockString);
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://finance.yahoo.com/d/quotes.csv?s=%@&f=sl1d1t1c1ohgv&e=.csv",stockString]];
+    
+    
+    
+//    NSLog(@"%@", url);
+    
+    
+    NSURLSessionDownloadTask *downloadStockData = [[NSURLSession sharedSession]
+                                                   downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        
 
+                                                       NSError *err = nil;
+                                                       
+                                                       if (err) {
+                                                           NSLog(@"%@", err.localizedDescription);
+                                                       }
+    
+                                                            if(error == nil)
+                                                            {
+//                                                                dispatch_sync(dispatch_get_main_queue(), ^{
+                                                                
+                                                                NSError* error;
+                                                                
+                                                                NSString* fileContents = [NSString stringWithContentsOfURL:url usedEncoding:nil error:&error];
+                                                                
+                                                                    NSArray *stockInfo = [[NSArray alloc] init];
+                                                                stockInfo = [fileContents componentsSeparatedByString:@","];
+                                                                
+                                                                
+                                                                int k = 0;
+                                                                for (int i = 1; i < [stockInfo count]; i+=8) {
+                                                                    
+                                                                    self.stockDataArray[k]=stockInfo[i];
+                                                                    k++;
+                                                                }
+                                                                
+//                                                                NSLog(@"%@", self.stockDataArray);
+                                                                [[NSNotificationCenter defaultCenter] postNotificationName:@"stockDataDidDownload" object:nil];
+                                                                
+//                                                                 });
+                                                                
+                                                            }
+                                                   
+                                                            
+                                                        }];
+    
+                                                
+    
+    [downloadStockData resume];
+    
+    
 
+                                        
+    
+}
+
+-(NSMutableArray*)getStockDataArray{
+    
+    return self.stockDataArray;
+    
+    
+}
+                                                   
 
 
 

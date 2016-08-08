@@ -23,7 +23,11 @@
 @property (nonatomic, retain) IBOutlet EditingViewController * editingViewController;
 @property (nonatomic, retain) EditViewController * editViewController;
 @property (nonatomic, retain) NSString * documentsDirectory;
+//@property (nonatomic, retain) NSMutableArray * stockArray;
+@property (nonatomic, retain) NSMutableArray *stockPriceArray;
+//@property (nonatomic, retain) NSString *stockString;
 
 -(void)insertNewObject;
+-(void)loadStockData;
 
 @end

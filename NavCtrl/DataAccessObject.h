@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Company.h"
 #import "Product.h"
+#import "CompanyViewController.h"
 
 @interface DataAccessObject : NSObject
 
@@ -17,13 +18,17 @@
 
 
 @property (strong, nonatomic) NSMutableArray *companiesArray;
-//@property (strong, nonatomic) NSMutableArray *imageURLArray;
+@property (strong, nonatomic) NSMutableArray *stockDataArray;
+@property (nonatomic, retain) NSMutableArray * stockArray;
+
 
 
 -(NSMutableArray*)createData;
 +(DataAccessObject*)sharedDataAccessObject;
 -(void)addCompany:(Company*)company;
 -(NSMutableArray*)refreshData;
+-(void)stockData;
+-(NSMutableArray*)getStockDataArray;
 
 
 @end
