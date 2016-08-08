@@ -71,6 +71,10 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    if ([[DataAccessObject sharedDataAccessObject] getStockDataArray]!= nil) {
+        [[DataAccessObject sharedDataAccessObject] getStockDataArray];
+    }
 //    
     [[DataAccessObject sharedDataAccessObject] stockData];
     NSLog(@"stock prices are %@", self.stockPriceArray);
@@ -130,7 +134,10 @@
     NSString * imageName = [NSString stringWithFormat:@"%@.png", name ];
     NSString *imagePath = [self.documentsDirectory stringByAppendingPathComponent:imageName];
     cell.textLabel.text = name;
-    cell.detailTextLabel.text = [self.stockPriceArray objectAtIndex:[indexPath row]];
+    if (self.stockPriceArray.count == self.companies.count) {
+        cell.detailTextLabel.text = [self.stockPriceArray objectAtIndex:[indexPath row]];
+    }
+   
 
     cell.imageView.image = [UIImage imageWithContentsOfFile:imagePath];
 
