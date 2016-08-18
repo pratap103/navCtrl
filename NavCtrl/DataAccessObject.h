@@ -10,8 +10,11 @@
 #import "Company.h"
 #import "Product.h"
 #import "CompanyViewController.h"
+#import <CoreData/CoreData.h>
+#import "CompanyMO.h"
 
 @interface DataAccessObject : NSObject
+
 
 
 
@@ -20,15 +23,23 @@
 @property (strong, nonatomic) NSMutableArray *companiesArray;
 @property (strong, nonatomic) NSMutableArray *stockDataArray;
 @property (nonatomic, retain) NSMutableArray * stockArray;
+@property int pos;
 
 
 
 -(NSMutableArray*)createData;
 +(DataAccessObject*)sharedDataAccessObject;
+-(void)refreshOrder:(NSMutableArray*)companiesArray;
 -(void)addCompany:(Company*)company;
+-(void)companyWasEdited:(Company*)company;
+-(void)companyWasDeleted:(Company*)company;
+-(void)addProduct:(Product*)product forCompany:(Company*)company;
+-(void)productWasDeleted:(Product*)product;
+-(void)productWasEdited:(Product*)product;
 -(NSMutableArray*)refreshData;
 -(void)stockData;
 -(NSMutableArray*)getStockDataArray;
+-(BOOL)coreDataIsEmpty;
 
 
 @end

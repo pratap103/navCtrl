@@ -35,8 +35,14 @@
 		BA56CCB01D35A75800C1C4A4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA56CCAF1D35A75800C1C4A4 /* WebKit.framework */; };
 		BA56CCB31D36E88800C1C4A4 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56CCB21D36E88800C1C4A4 /* Company.m */; };
 		BA56CCB61D36E8F000C1C4A4 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = BA56CCB51D36E8F000C1C4A4 /* Product.m */; };
+		BA8859841D6245AD009CEA65 /* ProductMO+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = BA88597D1D6245AD009CEA65 /* ProductMO+CoreDataProperties.m */; };
+		BA8859851D6245AD009CEA65 /* ProductMO.m in Sources */ = {isa = PBXBuildFile; fileRef = BA88597F1D6245AD009CEA65 /* ProductMO.m */; };
+		BA8859861D6245AD009CEA65 /* CompanyMO+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8859811D6245AD009CEA65 /* CompanyMO+CoreDataProperties.m */; };
+		BA8859871D6245AD009CEA65 /* CompanyMO.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8859831D6245AD009CEA65 /* CompanyMO.m */; };
 		BACD5CA01D5262C7009F4A26 /* ProductEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BACD5C9E1D5262C7009F4A26 /* ProductEditViewController.m */; };
 		BACD5CA11D5262C7009F4A26 /* ProductEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BACD5C9F1D5262C7009F4A26 /* ProductEditViewController.xib */; };
+		BAEC71611D5990C800C777D0 /* NavCtrl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEC715F1D5990C800C777D0 /* NavCtrl.xcdatamodeld */; };
+		BAEC71661D5A4DA800C777D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEC71651D5A4DA800C777D0 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,9 +95,19 @@
 		BA56CCB21D36E88800C1C4A4 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		BA56CCB41D36E8F000C1C4A4 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		BA56CCB51D36E8F000C1C4A4 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		BA88597C1D6245AD009CEA65 /* ProductMO+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProductMO+CoreDataProperties.h"; sourceTree = "<group>"; };
+		BA88597D1D6245AD009CEA65 /* ProductMO+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProductMO+CoreDataProperties.m"; sourceTree = "<group>"; };
+		BA88597E1D6245AD009CEA65 /* ProductMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMO.h; sourceTree = "<group>"; };
+		BA88597F1D6245AD009CEA65 /* ProductMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMO.m; sourceTree = "<group>"; };
+		BA8859801D6245AD009CEA65 /* CompanyMO+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CompanyMO+CoreDataProperties.h"; sourceTree = "<group>"; };
+		BA8859811D6245AD009CEA65 /* CompanyMO+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CompanyMO+CoreDataProperties.m"; sourceTree = "<group>"; };
+		BA8859821D6245AD009CEA65 /* CompanyMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMO.h; sourceTree = "<group>"; };
+		BA8859831D6245AD009CEA65 /* CompanyMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMO.m; sourceTree = "<group>"; };
 		BACD5C9D1D5262C7009F4A26 /* ProductEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEditViewController.h; sourceTree = "<group>"; };
 		BACD5C9E1D5262C7009F4A26 /* ProductEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEditViewController.m; sourceTree = "<group>"; };
 		BACD5C9F1D5262C7009F4A26 /* ProductEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductEditViewController.xib; sourceTree = "<group>"; };
+		BAEC71601D5990C800C777D0 /* NavCtrl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NavCtrl.xcdatamodel; sourceTree = "<group>"; };
+		BAEC71651D5A4DA800C777D0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAEC71661D5A4DA800C777D0 /* CoreData.framework in Frameworks */,
 				BA56CCB01D35A75800C1C4A4 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
@@ -149,6 +166,14 @@
 		48A656A818163BF200746D36 = {
 			isa = PBXGroup;
 			children = (
+				BA88597C1D6245AD009CEA65 /* ProductMO+CoreDataProperties.h */,
+				BA88597D1D6245AD009CEA65 /* ProductMO+CoreDataProperties.m */,
+				BA88597E1D6245AD009CEA65 /* ProductMO.h */,
+				BA88597F1D6245AD009CEA65 /* ProductMO.m */,
+				BA8859801D6245AD009CEA65 /* CompanyMO+CoreDataProperties.h */,
+				BA8859811D6245AD009CEA65 /* CompanyMO+CoreDataProperties.m */,
+				BA8859821D6245AD009CEA65 /* CompanyMO.h */,
+				BA8859831D6245AD009CEA65 /* CompanyMO.m */,
 				BA53FDF11D53D91C004D4D0A /* Launch Screen.storyboard */,
 				48A656BA18163BF200746D36 /* NavCtrl */,
 				48A656D318163BF200746D36 /* NavCtrlTests */,
@@ -169,6 +194,7 @@
 		48A656B318163BF200746D36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BAEC71651D5A4DA800C777D0 /* CoreData.framework */,
 				BA56CCAF1D35A75800C1C4A4 /* WebKit.framework */,
 				48A656B418163BF200746D36 /* Foundation.framework */,
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
@@ -181,6 +207,7 @@
 		48A656BA18163BF200746D36 /* NavCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				BA88593D1D5A8C8C009CEA65 /* model */,
 				BA53FDEC1D5293BE004D4D0A /* EditViewController.h */,
 				BA53FDED1D5293BE004D4D0A /* EditViewController.m */,
 				BA53FDEE1D5293BE004D4D0A /* EditViewController.xib */,
@@ -189,12 +216,6 @@
 				BACD5C9F1D5262C7009F4A26 /* ProductEditViewController.xib */,
 				BA56CCAC1D358A4000C1C4A4 /* WebKitViewController.h */,
 				BA56CCAD1D358A4000C1C4A4 /* WebKitViewController.m */,
-				BA03F9481D3E8FC100B3C4BF /* DataAccessObject.h */,
-				BA03F9491D3E8FC100B3C4BF /* DataAccessObject.m */,
-				BA56CCB11D36E88800C1C4A4 /* Company.h */,
-				BA56CCB21D36E88800C1C4A4 /* Company.m */,
-				BA56CCB41D36E8F000C1C4A4 /* Product.h */,
-				BA56CCB51D36E8F000C1C4A4 /* Product.m */,
 				483796CB1BCBF7A00062D5AB /* AppDelegate */,
 				483796CC1BCBF7C70062D5AB /* ParentViewController */,
 				483796CD1BCBF7EB0062D5AB /* ProductViewController */,
@@ -237,6 +258,20 @@
 				48A656D618163BF200746D36 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA88593D1D5A8C8C009CEA65 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				BA03F9481D3E8FC100B3C4BF /* DataAccessObject.h */,
+				BA03F9491D3E8FC100B3C4BF /* DataAccessObject.m */,
+				BA56CCB11D36E88800C1C4A4 /* Company.h */,
+				BA56CCB21D36E88800C1C4A4 /* Company.m */,
+				BA56CCB41D36E8F000C1C4A4 /* Product.h */,
+				BA56CCB51D36E8F000C1C4A4 /* Product.m */,
+				BAEC715F1D5990C800C777D0 /* NavCtrl.xcdatamodeld */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,11 +382,16 @@
 				BA03F94A1D3E8FC100B3C4BF /* DataAccessObject.m in Sources */,
 				BA56CCB61D36E8F000C1C4A4 /* Product.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
+				BAEC71611D5990C800C777D0 /* NavCtrl.xcdatamodeld in Sources */,
 				BA56CCB31D36E88800C1C4A4 /* Company.m in Sources */,
 				BACD5CA01D5262C7009F4A26 /* ProductEditViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				BA56CCAE1D358A4000C1C4A4 /* WebKitViewController.m in Sources */,
 				BA53FDEF1D5293BE004D4D0A /* EditViewController.m in Sources */,
+				BA8859871D6245AD009CEA65 /* CompanyMO.m in Sources */,
+				BA8859861D6245AD009CEA65 /* CompanyMO+CoreDataProperties.m in Sources */,
+				BA8859851D6245AD009CEA65 /* ProductMO.m in Sources */,
+				BA8859841D6245AD009CEA65 /* ProductMO+CoreDataProperties.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 			);
@@ -571,6 +611,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BAEC715F1D5990C800C777D0 /* NavCtrl.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BAEC71601D5990C800C777D0 /* NavCtrl.xcdatamodel */,
+			);
+			currentVersion = BAEC71601D5990C800C777D0 /* NavCtrl.xcdatamodel */;
+			path = NavCtrl.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48A656A918163BF200746D36 /* Project object */;
 }

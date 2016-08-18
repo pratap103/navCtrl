@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="CompanyMO" representedClassName="CompanyMO" syncable="YES">
+        <attribute name="myURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="stockPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stockSymbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProductMO" inverseName="company" inverseEntity="ProductMO" syncable="YES"/>
+    </entity>
+    <entity name="ProductMO" representedClassName="ProductMO" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyMO" inverseName="products" inverseEntity="CompanyMO" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CompanyMO" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="ProductMO" positionX="-54" positionY="18" width="128" height="105"/>
+    </elements>
+</model>

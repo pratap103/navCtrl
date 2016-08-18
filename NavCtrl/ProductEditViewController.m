@@ -132,18 +132,10 @@
         
         
         
+//        NSLog(@"%@", self.company);
         Product *product = [[Product alloc] initWithName:self.productName.text productURL:self.productURL.text productImageURL:self.productImageURL.text];
-        [self.company.products addObject:product];
-        //    [[DataAccessObject sharedDataAccessObject]addProduct:product];
-        
-//        NSURL *url = [NSURL URLWithString:self.productImageURL.text];
-//        
-//        NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-//        
-//        UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-//        
-//        product.productImage = tmpImage;
-//        
+        [[DataAccessObject sharedDataAccessObject] addProduct:product forCompany:self.company];
+//        [self.company.products addObject:product];
         
         if (self.company.products == NULL) {
             self.company.products = [[NSMutableArray alloc] init];

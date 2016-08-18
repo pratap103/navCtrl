@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Product.h"
+#import <CoreData/CoreData.h>
 
 @interface Company : NSObject
 
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) NSString *myURL;
 @property (nonatomic, strong) NSString *stockSymbol;
 @property (nonatomic, strong) NSString *stockPrice;
+@property NSInteger position;
 
 
 

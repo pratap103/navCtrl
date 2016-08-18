@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Aditya Narayan. All rights reserved.
 //
 
+#import "NavControllerAppDelegate.h"
 #import "CompanyViewController.h"
 #import "ProductViewController.h"
 #import "Company.h"
@@ -37,7 +38,28 @@
 {
     [super viewDidLoad];
     
-    self.companies = [[DataAccessObject sharedDataAccessObject] createData];
+    
+    
+    if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == YES) {
+        
+        self.companies = [[DataAccessObject sharedDataAccessObject] createData];
+        
+    }
+    
+    if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == NO) {
+        self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
+    }
+    
+//    static NSString* const hasRunAppOnceKey = @"hasRunAppOnceKey";
+//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//    if ([defaults boolForKey:hasRunAppOnceKey] == NO)
+//    {
+//        
+//        self.companies = [[DataAccessObject sharedDataAccessObject] createData];
+//        
+//        [defaults setBool:YES forKey:hasRunAppOnceKey];
+//    }
+
     
     
     [self.tableView reloadData];
@@ -56,12 +78,19 @@
 
     self.tableView.allowsSelectionDuringEditing = YES;
    
-
-//    self.stockPriceArray = [[NSMutableArray alloc]init];
-
-    
-    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    
+    UIBarButtonItem *undoButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoButton)];
+    
+    UIBarButtonItem *redoButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRedo target:self action:@selector(redoButton)];
+    
+    UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc]
+                                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                target:nil action:nil];
+    
+    self.toolbarItems = [NSArray arrayWithObjects:redoButton, flexibleSpaceButtonItem, undoButton, nil];
+
     
     
     
@@ -70,14 +99,33 @@
     
 }
 
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    
+    if (self.navigationController.toolbarHidden == NO) {
+        self.navigationController.toolbarHidden = YES;
+        self.tableView.editing = NO;
+        
+    }
+    
+    else if (self.navigationController.toolbarHidden == YES) {
+        self.navigationController.toolbarHidden = NO;
+        self.tableView.editing = YES;
+    }
+    
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated{
+    
+   
     
     if ([[DataAccessObject sharedDataAccessObject] getStockDataArray]!= nil) {
         [[DataAccessObject sharedDataAccessObject] getStockDataArray];
     }
 //    
     [[DataAccessObject sharedDataAccessObject] stockData];
-    NSLog(@"stock prices are %@", self.stockPriceArray);
+//    NSLog(@"stock prices are %@", self.stockPriceArray);
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -85,13 +133,20 @@
                                                  name:@"stockDataDidDownload"
                                                object:nil];
     
+        
+    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
     
+    if (self.tableView.editing == YES) {
+        
+        self.navigationController.toolbarHidden = NO;
+    }
     
+
+
      [self.tableView reloadData];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-    
     
     
     
@@ -148,9 +203,10 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {                //delete cell
+        [[DataAccessObject sharedDataAccessObject] companyWasDeleted:[self.companies objectAtIndex:indexPath.row]];
         [self.companies removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [[DataAccessObject sharedDataAccessObject]updateCompaniesArray:self.companyList];
+        
     }
     else if
         (editingStyle == UITableViewCellEditingStyleInsert){
@@ -177,6 +233,8 @@
     Company *companyToMove = self.companies[sourceIndexPath.row];
     [self.companies removeObjectAtIndex:sourceIndexPath.row];
     [self.companies insertObject:companyToMove atIndex:destinationIndexPath.row];
+    [[DataAccessObject sharedDataAccessObject]refreshOrder:self.companies];
+    
     
 }
 
@@ -189,6 +247,32 @@
      animated:YES];
     
 }
+
+-(void)undoButton{
+    NSLog(@"undo");
+    NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* moc = appDelegate.managedObjectContext;
+
+    [moc undo];
+    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
+    [self.tableView reloadData];
+}
+
+
+-(void)redoButton{
+    
+    NSLog(@"redo");
+    NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* moc = appDelegate.managedObjectContext;
+    
+    [moc redo];
+    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
+    [self.tableView reloadData];
+    
+    
+    
+}
+
 
 -(void)loadStockData{
     
@@ -244,10 +328,12 @@
     
 }
 
-- (void) imageDownloaded:(NSNotification *)notification{
+- (void)imageDownloaded:(NSNotification *)notification{
     
     [self.tableView reloadData];
 }
+
+
 
 
 @end

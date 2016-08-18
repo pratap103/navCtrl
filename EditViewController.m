@@ -125,7 +125,7 @@
         
         
         Company *company = [[Company alloc] initWithName:self.companyName.text stockSymbol:self.stockSymbol.text imageURL:self.companyURL.text];
-        
+//         [self.company addObject:company];
         
         [[DataAccessObject sharedDataAccessObject] addCompany:company];
         
@@ -139,6 +139,8 @@
     }
     
     else if (self.editingCompany == YES){
+        
+        
         
         if (self.company.name != self.companyName.text) {
             
@@ -181,7 +183,7 @@
                 
             }
 
-            
+            [[DataAccessObject sharedDataAccessObject] companyWasEdited:self.company];
         }
         
         
@@ -196,6 +198,7 @@
                 
                 self.company.name = self.companyName.text;
                 self.company.myURL = self.companyURL.text;
+                [[DataAccessObject sharedDataAccessObject] companyWasEdited:self.company];
                 NSLog(@"URL unchanged");
             }
         
@@ -244,7 +247,9 @@
         }
         
         
-        
+    if (self.editingCompany == YES) {
+        [[DataAccessObject sharedDataAccessObject] companyWasEdited:self.company];
+    }
 
     
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
