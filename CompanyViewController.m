@@ -17,7 +17,7 @@
 
 @interface CompanyViewController ()
 @property (nonatomic, strong) DataAccessObject *dao;
-@property (nonatomic, strong) NSMutableArray *companies;
+@property (nonatomic, strong) NSMutableArray<Company*> *companies;
 @end
 
 @implementation CompanyViewController
@@ -38,7 +38,10 @@
 {
     [super viewDidLoad];
     
-    
+    if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == NO) {
+        self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
+    }
+
     
     if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == YES) {
         
@@ -46,9 +49,6 @@
         
     }
     
-    if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == NO) {
-        self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
-    }
     
 //    static NSString* const hasRunAppOnceKey = @"hasRunAppOnceKey";
 //    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -63,6 +63,7 @@
     
     
     [self.tableView reloadData];
+    
     
 //    self.dao = [DataAccessObject sharedDataAccessObject];
 //    self.companies = self.dao.companiesArray;
@@ -144,6 +145,7 @@
 
 
      [self.tableView reloadData];
+   
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -204,9 +206,8 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {                //delete cell
         [[DataAccessObject sharedDataAccessObject] companyWasDeleted:[self.companies objectAtIndex:indexPath.row]];
-        [self.companies removeObjectAtIndex:indexPath.row];
+//        [self.companies removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
     }
     else if
         (editingStyle == UITableViewCellEditingStyleInsert){

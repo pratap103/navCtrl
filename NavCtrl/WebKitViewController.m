@@ -58,12 +58,13 @@
             
             NSURLRequest *nsrequest =[NSURLRequest requestWithURL:url];
             [webView loadRequest:nsrequest];
-            
+            [configuration release];
             
         }];
         
         [dataTask resume];
         [self.view addSubview:webView];
+    
     
     
 }

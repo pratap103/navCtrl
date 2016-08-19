@@ -133,7 +133,8 @@
         self.companyURL.text = @"";
         self.stockSymbol.text= @"";
         
-        //    [CompanyViewController.tableView reloadData];
+        [company release];
+        
         [self.navigationController popViewControllerAnimated:YES];
         
     }
@@ -254,8 +255,10 @@
     
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         [self.navigationController popViewControllerAnimated:YES];
-    }
     
+    [self.company release];
+    }
+
 
 /*
  #pragma mark - Navigation

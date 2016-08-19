@@ -22,6 +22,8 @@
 
 @interface DataAccessObject ()
 
+@property(nonatomic, retain) NSMutableArray *managedCompaniesArray;
+
 @end
 
 
@@ -74,6 +76,10 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     self.pos = 0;
     self.companiesArray = [NSMutableArray arrayWithObjects: companyApple, companySamsung, companyBlackberry, companyNexus, nil];
+    [companyApple release];
+    [companySamsung release];
+    [companyBlackberry release];
+    [companyNexus release];
     
     
     for(Company *company in self.companiesArray){
@@ -191,6 +197,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
 
 -(void)companyWasDeleted:(Company*)company{
     
+    [self.companiesArray removeObject:company];
     
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
@@ -205,7 +212,6 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
     
     [moc deleteObject:[results objectAtIndex:0]];
-
 
     
     
@@ -239,6 +245,8 @@ static DataAccessObject* _sharedDataAccessObject = nil;
 }
 
 -(void)productWasDeleted:(Product*)product{
+    
+    
     
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
@@ -276,6 +284,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     }
 
     NSString * stockString = [self.stockArray componentsJoinedByString:@","];
+    [self.stockArray release];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://finance.yahoo.com/d/quotes.csv?s=%@&f=sl1d1t1c1ohgv&e=.csv",stockString]];
     NSURLSessionDownloadTask *downloadStockData = [[NSURLSession sharedSession]
                                                    downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
@@ -306,6 +315,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
                                                                 dispatch_sync(dispatch_get_main_queue(), ^{
 
                                                                     [[NSNotificationCenter defaultCenter] postNotificationName:@"stockDataDidDownload" object:nil];
+                                                                    [self.stockDataArray release];
                                                                 
                                                                  });
                                                                 
@@ -350,10 +360,34 @@ static DataAccessObject* _sharedDataAccessObject = nil;
         NSLog(@"Error fetching Company objects: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
-    self.companiesArray = [NSMutableArray arrayWithArray:results];
+    self.managedCompaniesArray = [NSMutableArray arrayWithArray:results];
+    self.companiesArray = [[NSMutableArray alloc] init];
     
+    for (CompanyMO *companyMO in self.managedCompaniesArray){
+        Company *company = [[Company alloc] initWithName:companyMO.name stockSymbol:companyMO.stockSymbol imageURL:companyMO.myURL];
+        company.products = [[NSMutableArray alloc] init];
+        for (ProductMO *productMO in companyMO.products) {
+            Product *product = [[Product alloc] initWithName:productMO.name productURL:productMO.productURL productImageURL:productMO.productImageURL];
+            
+            [company.products addObject:product];
+            [product release];
+        }
+        [self.companiesArray addObject:company];
+        [company release];
     
+        
+    }
+
     return self.companiesArray;
+    [request release];
+    
+    sortDescriptor = nil;
+    sortDescriptors = nil;
+    [sortDescriptor release];
+    [sortDescriptors release];
+    [results release];
+    [self.companiesArray release];
+
 }
 
 
@@ -407,6 +441,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     
 }
+
 
 
 

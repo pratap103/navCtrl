@@ -135,7 +135,7 @@
 //        NSLog(@"%@", self.company);
         Product *product = [[Product alloc] initWithName:self.productName.text productURL:self.productURL.text productImageURL:self.productImageURL.text];
         [[DataAccessObject sharedDataAccessObject] addProduct:product forCompany:self.company];
-//        [self.company.products addObject:product];
+        [self.company.products addObject:product];
         
         if (self.company.products == NULL) {
             self.company.products = [[NSMutableArray alloc] init];

@@ -16,9 +16,9 @@
     self = [super init];
     
     if(self) {
-        self.name = name;
-        self.stockSymbol = stockSymbol;
-        self.myURL = URL;
+        _name = [name retain];
+        _stockSymbol = [stockSymbol retain];                 //self.stockSymbol = stockSymbol
+        _myURL = [URL retain];
         
         
         

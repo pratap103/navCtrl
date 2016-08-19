@@ -16,9 +16,9 @@
     self = [super init];
     
     if(self) {
-        self.name = name;
-        self.productURL = productURL;
-        self.productImageURL = productImageURL;
+        _name = [name retain];
+        _productURL = [productURL retain];                           //self.productURL = productURL
+        _productImageURL = [productImageURL retain];
        
         
         NSFileManager *fileManager = [NSFileManager defaultManager];

@@ -54,7 +54,7 @@
     [super viewWillAppear:animated];
     
 //    self.company.products = [[DataAccessObject sharedDataAccessObject]refreshData];
-        
+    
 //
     [self.tableView reloadData];
 //
@@ -145,7 +145,7 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[DataAccessObject sharedDataAccessObject] productWasDeleted:[self.company.products objectAtIndex:indexPath.row]];
-//        [self.company.products removeObjectAtIndex:indexPath.row];
+        [self.company.products removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if

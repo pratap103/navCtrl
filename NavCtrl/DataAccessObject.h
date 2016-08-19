@@ -20,7 +20,7 @@
 
 
 
-@property (strong, nonatomic) NSMutableArray *companiesArray;
+@property (strong, nonatomic) NSMutableArray<Company*> *companiesArray;
 @property (strong, nonatomic) NSMutableArray *stockDataArray;
 @property (nonatomic, retain) NSMutableArray * stockArray;
 @property int pos;
