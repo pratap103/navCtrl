@@ -33,17 +33,13 @@
     
     [self.view addGestureRecognizer:tap];
     
+    [cancelButton release];
+    [saveButton release];
+    [tap release];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
-    
-    
-    NSLog(@"%@", self.company.name);
-    NSLog(@"%@", self.company.stockSymbol);
-    
-    
     
     if (self.editingCompany == YES ) {
         self.navigationItem.title = @"Edit Company";
@@ -77,17 +73,12 @@
     [self.stockSymbol.layer addSublayer:border2];
     self.stockSymbol.layer.masksToBounds = YES;
     
-    
-    
     CALayer *border3 = [CALayer layer];
     border3.borderColor = [UIColor lightGrayColor].CGColor;
     border3.frame = CGRectMake(0, self.companyURL.frame.size.height - borderWidth, self.companyURL.frame.size.width, self.companyURL.frame.size.height);
     border3.borderWidth = borderWidth;
     [self.companyURL.layer addSublayer:border3];
     self.companyURL.layer.masksToBounds = YES;
-    
-    
-    
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
@@ -98,9 +89,6 @@
                                              selector:@selector(keyboardWillHide)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,7 +99,6 @@
 
 -(void)cancelEdit{
     
-    
     [self.navigationController popViewControllerAnimated:YES];
     self.companyName.text = @"";
     self.companyURL.text = @"";
@@ -120,29 +107,20 @@
 
 -(void)saveEdit{
     
-    
     if (self.editingCompany == NO) {
-        
-        
         Company *company = [[Company alloc] initWithName:self.companyName.text stockSymbol:self.stockSymbol.text imageURL:self.companyURL.text];
-//         [self.company addObject:company];
-        
         [[DataAccessObject sharedDataAccessObject] addCompany:company];
         
         self.companyName.text = @"";
         self.companyURL.text = @"";
         self.stockSymbol.text= @"";
-        
         [company release];
-        
         [self.navigationController popViewControllerAnimated:YES];
         
     }
     
     else if (self.editingCompany == YES){
-        
-        
-        
+
         if (self.company.name != self.companyName.text) {
             
             self.company.name = self.companyName.text;
@@ -179,19 +157,9 @@
                                                                }];
                 // 4
                 [downloadPhotoTask resume];
-                
-                
-                
             }
-
             [[DataAccessObject sharedDataAccessObject] companyWasEdited:self.company];
-        }
-        
-        
-        
-        NSLog(@"HELLO");
-        
-        
+}
         self.company.stockSymbol = self.stockSymbol.text;
         
         if
@@ -239,12 +207,8 @@
                 // 4
                 [downloadPhotoTask resume];
 
-            
-            
+
             }
-            
-            
-            
         }
         
         
@@ -258,17 +222,6 @@
     
     [self.company release];
     }
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 -(void)dismissKeyboard {
     [self.companyName resignFirstResponder];

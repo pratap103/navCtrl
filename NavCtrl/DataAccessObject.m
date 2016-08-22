@@ -169,6 +169,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     [newCompany setStockSymbol:company.stockSymbol];
     [newCompany setMyURL:company.myURL];
     [newCompany setPosition:y];
+   
 
 }
 
@@ -212,7 +213,8 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
     
     [moc deleteObject:[results objectAtIndex:0]];
-
+    [request release];
+   
     
     
 }
@@ -339,7 +341,7 @@ static DataAccessObject* _sharedDataAccessObject = nil;
 
 
 
--(NSMutableArray*)refreshData{
+-(void)refreshData{
     
     
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -375,19 +377,24 @@ static DataAccessObject* _sharedDataAccessObject = nil;
         [self.companiesArray addObject:company];
         [company release];
     
-        
+        [company.products release];
     }
-
-    return self.companiesArray;
-    [request release];
-    
-    sortDescriptor = nil;
-    sortDescriptors = nil;
+    //Memory management debbuging, this method is not 100% accurate on count
+//
+//    NSLog(@"request %lu", (unsigned long)[request retainCount]);
+//    NSLog(@"managed companies %lu", (unsigned long)[self.managedCompaniesArray retainCount]);
+//    NSLog(@"sort %lu", (unsigned long)[sortDescriptor retainCount]);
+//    NSLog(@"sort array %lu", (unsigned long)[sortDescriptors retainCount]);
+//
+    [self.managedCompaniesArray release];
     [sortDescriptor release];
     [sortDescriptors release];
-    [results release];
     [self.companiesArray release];
-
+//        
+//    NSLog(@"request %lu", (unsigned long)[request retainCount]);
+//    NSLog(@"managed companies %lu", (unsigned long)[self.managedCompaniesArray retainCount]);
+//    NSLog(@"sort %lu", (unsigned long)[sortDescriptor retainCount]);
+//    NSLog(@"sort array %lu", (unsigned long)[sortDescriptors retainCount]);
 }
 
 

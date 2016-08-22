@@ -17,31 +17,14 @@
 @end
 
 @implementation ProductEditViewController
-//
-//- (id)init
-//{
-//    self = [super init];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelEdit)];
     self.navigationItem.leftBarButtonItem = cancelButton;
-    
-    
-    
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveEdit)];
     self.navigationItem.rightBarButtonItem = saveButton;
-    
-    
-      
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -50,13 +33,14 @@
     
     self.navigationItem.title = @"Edit Product";
     
+    [cancelButton release];
+    [saveButton release];
+    [tap release];
     
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-
-    NSLog(@"Hello");
     
     CALayer *border = [CALayer layer];
     CGFloat borderWidth = 1;
@@ -72,8 +56,6 @@
     border2.borderWidth = borderWidth;
     [self.productURL.layer addSublayer:border2];
     self.productURL.layer.masksToBounds = YES;
-    
-    
     
     CALayer *border3 = [CALayer layer];
     border3.borderColor = [UIColor lightGrayColor].CGColor;
@@ -103,36 +85,28 @@
                                              selector:@selector(keyboardWillHide)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-
-    
-    
-    
     
 }
 
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
 }
-
-
 -(void)cancelEdit{
     
     [self.navigationController popViewControllerAnimated:YES];
     self.productName.text = @"";
     self.productURL.text = @"";
     self.productImageURL.text= @"";
-    
-    
+
 }
 -(void)saveEdit{
     
     if (self.editingProduct == NO) {
         
         
-        
-//        NSLog(@"%@", self.company);
         Product *product = [[Product alloc] initWithName:self.productName.text productURL:self.productURL.text productImageURL:self.productImageURL.text];
         [[DataAccessObject sharedDataAccessObject] addProduct:product forCompany:self.company];
         [self.company.products addObject:product];
@@ -164,11 +138,6 @@
             NSString *documentsDirectory = [paths objectAtIndex:0];
             NSString * imageName = [NSString stringWithFormat:@"%@.png", self.product.name ];
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-//            NSLog(@"%@", imagePath);
-            
-            //            if ([fileManager fileExistsAtPath:imagePath] == YES) {
-            //                NSLog(@"file exists");
-            
             [fileManager removeItemAtPath:imagePath error:nil];
             
             NSURL *url = [NSURL URLWithString:self.product.productImageURL];
@@ -194,13 +163,8 @@
             
             
         }
-        
-
-        
-        
         self.product.name = self.productName.text;
         self.product.productURL = self.productURL.text;
-        
         
         if
             (self.product.productImageURL == self.productImageURL.text){
@@ -247,28 +211,12 @@
             }
             
         }
-
-        
-  
-        
         NSArray *array = [self.navigationController viewControllers];
         
         [self.navigationController popToViewController:[array objectAtIndex:1] animated:YES];
     }
     
 }
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 -(void)dismissKeyboard {
     [self.productName resignFirstResponder];
     [self.productURL resignFirstResponder];

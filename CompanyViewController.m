@@ -39,14 +39,11 @@
     [super viewDidLoad];
     
     if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == NO) {
-        self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
-    }
-
-    
-    if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == YES) {
-        
-        self.companies = [[DataAccessObject sharedDataAccessObject] createData];
-        
+        [[DataAccessObject sharedDataAccessObject] refreshData];
+        self.companies = [DataAccessObject sharedDataAccessObject].companiesArray;
+    } else {
+        [[DataAccessObject sharedDataAccessObject] createData];
+        self.companies = [DataAccessObject sharedDataAccessObject].companiesArray;
     }
     
     
@@ -106,12 +103,15 @@
     if (self.navigationController.toolbarHidden == NO) {
         self.navigationController.toolbarHidden = YES;
         self.tableView.editing = NO;
+        self.editButtonItem.title = @"Edit";
         
     }
     
     else if (self.navigationController.toolbarHidden == YES) {
         self.navigationController.toolbarHidden = NO;
         self.tableView.editing = YES;
+        self.editButtonItem.title = @"Done";
+
     }
     
     
@@ -135,7 +135,7 @@
                                                object:nil];
     
         
-    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
+//    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
     
     if (self.tableView.editing == YES) {
         
@@ -200,6 +200,7 @@
 
     
     return cell;
+    [cell release];
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -246,6 +247,7 @@
     [self.navigationController
      pushViewController:self.editViewController
      animated:YES];
+    [self.editViewController release];
     
 }
 
@@ -255,7 +257,7 @@
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
 
     [moc undo];
-    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
+    [[DataAccessObject sharedDataAccessObject] refreshData];
     [self.tableView reloadData];
 }
 
@@ -267,7 +269,7 @@
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
     
     [moc redo];
-    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
+    [[DataAccessObject sharedDataAccessObject] refreshData];
     [self.tableView reloadData];
     
     
@@ -310,6 +312,7 @@
         [self.navigationController
          pushViewController:self.editViewController
          animated:YES];
+        [self.editViewController release];
 
     }
     if (tableView.editing == NO) {
@@ -324,6 +327,7 @@
         [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
+        [self.editViewController release];
     
     }
     

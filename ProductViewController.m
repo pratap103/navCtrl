@@ -104,6 +104,7 @@
 
     
     return cell;
+    [cell release];
     
 }
 
@@ -165,7 +166,7 @@
      pushViewController:self.productEditViewController
      animated:YES];
     self.productEditViewController.editingProduct = NO;
-    
+    [self.productEditViewController release];
     
 }
 

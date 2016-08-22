@@ -36,7 +36,7 @@
 -(void)addProduct:(Product*)product forCompany:(Company*)company;
 -(void)productWasDeleted:(Product*)product;
 -(void)productWasEdited:(Product*)product;
--(NSMutableArray*)refreshData;
+-(void)refreshData;
 -(void)stockData;
 -(NSMutableArray*)getStockDataArray;
 -(BOOL)coreDataIsEmpty;
