@@ -46,52 +46,21 @@
         self.companies = [DataAccessObject sharedDataAccessObject].companiesArray;
     }
     
-    
-//    static NSString* const hasRunAppOnceKey = @"hasRunAppOnceKey";
-//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-//    if ([defaults boolForKey:hasRunAppOnceKey] == NO)
-//    {
-//        
-//        self.companies = [[DataAccessObject sharedDataAccessObject] createData];
-//        
-//        [defaults setBool:YES forKey:hasRunAppOnceKey];
-//    }
-
-    
-    
     [self.tableView reloadData];
-    
-    
-//    self.dao = [DataAccessObject sharedDataAccessObject];
-//    self.companies = self.dao.companiesArray;
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     self.documentsDirectory = [paths objectAtIndex:0];
-    
-    
-    self.tableView.allowsSelection = YES
-    ;
+    self.tableView.allowsSelection = YES;
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.leftBarButtonItem = addButton;
-    
-
     self.tableView.allowsSelectionDuringEditing = YES;
-   
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-    
     UIBarButtonItem *undoButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoButton)];
-    
     UIBarButtonItem *redoButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRedo target:self action:@selector(redoButton)];
-    
     UIBarButtonItem *flexibleSpaceButtonItem = [[UIBarButtonItem alloc]
                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                 target:nil action:nil];
-    
     self.toolbarItems = [NSArray arrayWithObjects:redoButton, flexibleSpaceButtonItem, undoButton, nil];
-
-    
-    
-    
     self.title = @"Stock Tracker";
     
     
@@ -113,18 +82,16 @@
         self.editButtonItem.title = @"Done";
 
     }
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
-   
+   self.companies = [DataAccessObject sharedDataAccessObject].companiesArray;
     
     if ([[DataAccessObject sharedDataAccessObject] getStockDataArray]!= nil) {
         [[DataAccessObject sharedDataAccessObject] getStockDataArray];
     }
-//    
+
     [[DataAccessObject sharedDataAccessObject] stockData];
 //    NSLog(@"stock prices are %@", self.stockPriceArray);
     
@@ -134,6 +101,7 @@
                                                  name:@"stockDataDidDownload"
                                                object:nil];
     
+    [[DataAccessObject sharedDataAccessObject] refreshStockPrices];
         
 //    self.companies = [[DataAccessObject sharedDataAccessObject] refreshData];
     
@@ -142,15 +110,11 @@
         self.navigationController.toolbarHidden = NO;
     }
     
-
-
      [self.tableView reloadData];
    
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-    
-    
     
     [self.tableView reloadData];
     
@@ -195,10 +159,8 @@
         cell.detailTextLabel.text = [self.stockPriceArray objectAtIndex:[indexPath row]];
     }
    
-
     cell.imageView.image = [UIImage imageWithContentsOfFile:imagePath];
 
-    
     return cell;
     [cell release];
 }
@@ -228,15 +190,14 @@
     return YES;
 }
 
-
-
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     Company *companyToMove = self.companies[sourceIndexPath.row];
+    [companyToMove retain];
     [self.companies removeObjectAtIndex:sourceIndexPath.row];
     [self.companies insertObject:companyToMove atIndex:destinationIndexPath.row];
+    [companyToMove release];
     [[DataAccessObject sharedDataAccessObject]refreshOrder:self.companies];
-    
     
 }
 
@@ -272,13 +233,10 @@
     [[DataAccessObject sharedDataAccessObject] refreshData];
     [self.tableView reloadData];
     
-    
-    
 }
 
 
 -(void)loadStockData{
-    
     
     self.stockPriceArray = [[DataAccessObject sharedDataAccessObject] getStockDataArray];
 //    NSLog(@"stock prices are:%@",self.stockPriceArray);
@@ -286,10 +244,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
-    
-    
-    
-    
+
 }
 
 
@@ -307,8 +262,6 @@
         self.editViewController.company = [self.companies objectAtIndex:[indexPath row]];
         self.editViewController.editingCompany = YES;
         
-        
-        
         [self.navigationController
          pushViewController:self.editViewController
          animated:YES];
@@ -322,11 +275,16 @@
         self.productViewController.title = [[self.companies objectAtIndex:[indexPath row]] name];
         self.productViewController.company = [self.companies objectAtIndex:[indexPath row]];
         self.editViewController.editingCompany = NO;
-    
-    
+        
+        
+        CATransition * transition =  [CATransition animation];
+        transition.duration = 0.3f;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionFade;
+        [self.navigationController.view.layer addAnimation:transition forKey:nil];
         [self.navigationController
         pushViewController:self.productViewController
-        animated:YES];
+        animated:NO];
         [self.editViewController release];
     
     }

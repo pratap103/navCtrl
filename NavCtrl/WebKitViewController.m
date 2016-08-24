@@ -19,9 +19,6 @@
 
 @implementation WebKitViewController
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -37,23 +34,16 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    
-   
-    
+
     [super viewWillAppear:animated];
     
     NSLog(@"%@", self.product.productURL);
     
-    
-   
         WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
         WKWebView* webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
         webView.navigationDelegate = self;
         NSURLSession *session = [NSURLSession sharedSession];
         NSURL* url = [NSURL URLWithString:self.product.productURL];
-
-        
-        
         NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
             NSURLRequest *nsrequest =[NSURLRequest requestWithURL:url];
@@ -62,37 +52,24 @@
             
         }];
         
-        [dataTask resume];
-        [self.view addSubview:webView];
-    
-    
-    
+    [dataTask resume];
+    [self.view addSubview:webView];
 }
 
 -(void) editProduct{
     
-    
-    
     self.productEditViewController = [[ProductEditViewController alloc] initWithNibName:@"ProductEditViewController" bundle:nil];
-    
     self.productEditViewController.company = self.company;
     self.productEditViewController.product = self.product;
     self.productEditViewController.productIndex= self.productIndex;
     self.productEditViewController.editingProduct = YES;
-    
     self.productEditViewController.productName.text = self.product.name;
     self.productEditViewController.productURL.text = self.product.productURL;
     self.productEditViewController.productImageURL.text = self.product.productImageURL;
     
-    
     [self.navigationController
      pushViewController:self.productEditViewController
      animated:YES];
-    
-    
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

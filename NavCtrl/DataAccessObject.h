@@ -40,6 +40,7 @@
 -(void)stockData;
 -(NSMutableArray*)getStockDataArray;
 -(BOOL)coreDataIsEmpty;
+-(void)refreshStockPrices;
 
 
 @end

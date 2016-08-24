@@ -47,7 +47,7 @@
         self.stockSymbol.text = self.company.stockSymbol;
         self.companyURL.text = self.company.myURL;
         NSLog(@"Hello");
-    }
+}
     
     else{
         
@@ -55,8 +55,7 @@
         self.companyName.text = @"";
         self.stockSymbol.text = @"";
         self.companyURL.text = @"";
-
-    }
+}
     
     CALayer *border = [CALayer layer];
     CGFloat borderWidth = 1;
@@ -99,7 +98,12 @@
 
 -(void)cancelEdit{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    CATransition * transition =  [CATransition animation];
+    transition.duration = 0.3f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController popViewControllerAnimated:NO];
     self.companyName.text = @"";
     self.companyURL.text = @"";
     self.stockSymbol.text= @"";
@@ -114,7 +118,7 @@
         self.companyName.text = @"";
         self.companyURL.text = @"";
         self.stockSymbol.text= @"";
-        [company release];
+        [company autorelease];
         [self.navigationController popViewControllerAnimated:YES];
         
     }

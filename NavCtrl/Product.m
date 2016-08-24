@@ -10,7 +10,7 @@
 #import "Company.h"
 @implementation Product
 
-//-(id)initWithName:(NSString*)name productURL:(NSString*)productURL productImageURL:(NSString*)productImageURL{
+
 -(id)initWithName:(NSString*)name productURL:(NSString*)productURL productImageURL:(NSString*)productImageURL{
     
     self = [super init];

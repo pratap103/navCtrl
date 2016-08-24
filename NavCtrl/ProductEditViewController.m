@@ -74,7 +74,6 @@
         self.productImageURL.text = self.product.productImageURL;
     }
     
-    
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
@@ -87,14 +86,13 @@
                                                object:nil];
     
 }
-
-
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
    
 }
 -(void)cancelEdit{
+    
     
     [self.navigationController popViewControllerAnimated:YES];
     self.productName.text = @"";
@@ -116,12 +114,9 @@
             [self.company.products addObject:product];
         }
         
-        
         self.productName.text = @"";
         self.productURL.text = @"";
         self.productImageURL.text= @"";
-        
-        
         
         [self.navigationController popViewControllerAnimated:YES];
         
@@ -162,7 +157,7 @@
             
             
             
-        }
+}
         self.product.name = self.productName.text;
         self.product.productURL = self.productURL.text;
         

@@ -118,7 +118,13 @@
     self.webKitViewController.product = [self.company.products objectAtIndex:[indexPath row]];
     self.webKitViewController.company = self.company;
     self.webKitViewController.productIndex = indexPath;
-    [self.navigationController pushViewController:self.webKitViewController animated:YES];
+    
+    CATransition * transition =  [CATransition animation];
+    transition.duration = 0.3f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFromTop;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:self.webKitViewController animated:NO];
     
     
 }
@@ -173,7 +179,13 @@
     
 -(void)backToProducts{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    CATransition * transition =  [CATransition animation];
+    transition.duration = 0.3f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController popViewControllerAnimated:NO];
     
     
 }

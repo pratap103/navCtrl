@@ -17,17 +17,15 @@
     
     if(self) {
         _name = [name retain];
-        _stockSymbol = [stockSymbol retain];                 //self.stockSymbol = stockSymbol
+        _stockSymbol = [stockSymbol retain];
         _myURL = [URL retain];
-        
-        
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString * imageName = [NSString stringWithFormat:@"%@.png", self.name ];
         NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-//        NSLog(@"%@", imagePath);
+
         
         if ([fileManager fileExistsAtPath:imagePath] == YES) {
             

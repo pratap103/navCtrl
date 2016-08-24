@@ -30,8 +30,6 @@
 @implementation DataAccessObject
 static DataAccessObject* _sharedDataAccessObject = nil;
 
-
-
 -(NSMutableArray*)createData{
     
     Company *companyApple = [[Company alloc] initWithName:@"Apple mobile devices" stockSymbol:@"AAPL" imageURL:@"http://thebrainfever.com/images/apple-logos/Silhouette.png"];
@@ -58,21 +56,14 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     Product *n9 = [[Product alloc] initWithName:@"9" productURL:@"https://www.google.com/nexus/9/" productImageURL:@"http://cdn.arstechnica.net/wp-content/uploads/2014/10/nexus9-640x470.jpg"];
     companyNexus.products = [NSMutableArray arrayWithObjects:n5X, n6P, n9, nil];
     
-    
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-    
-    
-    
     NSError *mocSaveError = nil;
     
-    if (![moc save:&mocSaveError])
-    {
+    if (![moc save:&mocSaveError]){
         NSLog(@"Save did not complete successfully. Error: %@",
               [mocSaveError localizedDescription]);
     }
-
-    
     
     self.pos = 0;
     self.companiesArray = [NSMutableArray arrayWithObjects: companyApple, companySamsung, companyBlackberry, companyNexus, nil];
@@ -101,33 +92,23 @@ static DataAccessObject* _sharedDataAccessObject = nil;
             [newProduct setCompany:newCompany];
         }
         
-        [moc save:NULL];   
-        
+        [moc save:NULL];
     }
-    
     
     return self.companiesArray;
 }
 
-
-
-
-
 +(DataAccessObject*)sharedDataAccessObject{
     
-    
-    @synchronized ([DataAccessObject class]) {
+@synchronized ([DataAccessObject class]) {
         if (!_sharedDataAccessObject)
             _sharedDataAccessObject = [[DataAccessObject alloc]init];
 
-        
-            return _sharedDataAccessObject;
-        
-        
-        
-    }
-    return nil;
+    return _sharedDataAccessObject;
     
+    }
+    
+    return nil;
 }
 
 +(id) alloc{
@@ -149,8 +130,6 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     }
     
     return self;
-    
-    
     
 }
 
@@ -177,14 +156,10 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-    
-
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"CompanyMO" inManagedObjectContext:moc]];
-   
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", company.name];
     [request setPredicate:predicate];
-    
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
     
@@ -192,7 +167,6 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     editedCompany.name = company.name;
     editedCompany.stockSymbol = company.stockSymbol;
     editedCompany.myURL = company.myURL;
-    
     
 }
 
@@ -202,20 +176,14 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"CompanyMO" inManagedObjectContext:moc]];
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", company.name];
     [request setPredicate:predicate];
-
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
-    
     [moc deleteObject:[results objectAtIndex:0]];
     [request release];
-   
-    
     
 }
 
@@ -224,13 +192,10 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"CompanyMO" inManagedObjectContext:moc]];
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", company.name];
     [request setPredicate:predicate];
-    
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
     
@@ -241,38 +206,20 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     [newProduct setCompany:[results objectAtIndex:0]];
     [moc save:NULL];
     
-    
-
-    
 }
 
 -(void)productWasDeleted:(Product*)product{
     
-    
-    
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"ProductMO" inManagedObjectContext:moc]];
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", product.name];
     [request setPredicate:predicate];
-    
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
-    
     [moc deleteObject:[results objectAtIndex:0]];
     [moc save:NULL];
-    
-    
-    
-}
-
--(void)productWasEdited:(Product *)product{
-    
-    
-    
     
 }
 
@@ -302,6 +249,10 @@ static DataAccessObject* _sharedDataAccessObject = nil;
                                                                 
                                                                 NSString* fileContents = [NSString stringWithContentsOfURL:url usedEncoding:nil error:&error];
                                                                 
+                                                                if (fileContents == nil) {
+                                                                    NSLog(@"No internet");
+                                                                }
+                                                                
                                                                     NSArray *stockInfo = [[NSArray alloc] init];
                                                                 stockInfo = [fileContents componentsSeparatedByString:@","];
                                                                 
@@ -328,34 +279,27 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     [downloadStockData resume];
 }
 
-
-
-
 -(NSMutableArray*)getStockDataArray{
     
     return self.stockDataArray;
     
-    
 }
                                                    
-
-
+-(void)refreshStockPrices{
+    
+    [NSTimer scheduledTimerWithTimeInterval:60.f target:self selector:@selector(stockData) userInfo:nil repeats:YES];
+    
+}
 
 -(void)refreshData{
     
-    
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-
-    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CompanyMO"];
-    
-    
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position"
                                                                    ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [request setSortDescriptors:sortDescriptors];
-    
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
     if (!results) {
@@ -363,7 +307,11 @@ static DataAccessObject* _sharedDataAccessObject = nil;
         abort();
     }
     self.managedCompaniesArray = [NSMutableArray arrayWithArray:results];
-    self.companiesArray = [[NSMutableArray alloc] init];
+    
+    if(!self.companiesArray)
+        self.companiesArray = [[NSMutableArray alloc] init];
+    else
+        [self.companiesArray removeAllObjects];
     
     for (CompanyMO *companyMO in self.managedCompaniesArray){
         Company *company = [[Company alloc] initWithName:companyMO.name stockSymbol:companyMO.stockSymbol imageURL:companyMO.myURL];
@@ -379,34 +327,16 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     
         [company.products release];
     }
-    //Memory management debbuging, this method is not 100% accurate on count
-//
-//    NSLog(@"request %lu", (unsigned long)[request retainCount]);
-//    NSLog(@"managed companies %lu", (unsigned long)[self.managedCompaniesArray retainCount]);
-//    NSLog(@"sort %lu", (unsigned long)[sortDescriptor retainCount]);
-//    NSLog(@"sort array %lu", (unsigned long)[sortDescriptors retainCount]);
-//
-    [self.managedCompaniesArray release];
-    [sortDescriptor release];
-    [sortDescriptors release];
-    [self.companiesArray release];
-//        
-//    NSLog(@"request %lu", (unsigned long)[request retainCount]);
-//    NSLog(@"managed companies %lu", (unsigned long)[self.managedCompaniesArray retainCount]);
-//    NSLog(@"sort %lu", (unsigned long)[sortDescriptor retainCount]);
-//    NSLog(@"sort array %lu", (unsigned long)[sortDescriptors retainCount]);
+    [sortDescriptor autorelease];
+    [sortDescriptors autorelease];
+    
 }
-
 
 -(BOOL)coreDataIsEmpty{
     
-    
     NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-    
-//    NSManagedObjectContext *moc =[self managedObjectContext];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CompanyMO"];
-    
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
     if (results.count == 0) {
@@ -415,42 +345,27 @@ static DataAccessObject* _sharedDataAccessObject = nil;
     }
     
     else return NO;
-    
-    
-}
 
+}
 
 -(void)refreshOrder:(NSMutableArray*)companiesArray{
     
     for (int i = 0; i < companiesArray.count; i++) {
         
-        
         NavControllerAppDelegate *appDelegate = (NavControllerAppDelegate *)[[UIApplication sharedApplication] delegate];
         NSManagedObjectContext* moc = appDelegate.managedObjectContext;
-        
-
-        
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:[NSEntityDescription entityForName:@"CompanyMO" inManagedObjectContext:moc]];
-        
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", [[companiesArray objectAtIndex:i]name]];
         [request setPredicate:predicate];
-        
         NSError *error = nil;
         NSArray *results = [moc executeFetchRequest:request error:&error];
 
         CompanyMO *orderedCompany = [results objectAtIndex:0];
         NSNumber *y = [NSNumber numberWithInteger:i];
         orderedCompany.position = y;
-
-
     }
     
-    
 }
-
-
-
-
 
 @end
