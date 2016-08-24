@@ -36,6 +36,8 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.5 green:0.8 blue:0.35 alpha:1.0];
+    self.navigationController.navigationBar.translucent = NO;
     [super viewDidLoad];
     
     if ([[DataAccessObject sharedDataAccessObject] coreDataIsEmpty] == NO) {

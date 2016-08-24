@@ -27,7 +27,7 @@
             <connections>
                 <outlet property="webKitViewController" destination="4wS-As-jn2" id="Gmm-yQ-Ztl"/>
             </connections>
-            <point key="canvasLocation" x="-112" y="260"/>
+            <point key="canvasLocation" x="-623" y="224"/>
         </viewController>
         <view contentMode="scaleToFill" id="bKn-UP-3Lv">
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
